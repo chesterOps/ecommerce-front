@@ -1,0 +1,30 @@
+.feature-card {
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.feature-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.feature-description {
+  font-size: 0.95rem;
+  color: rgb(1, 1, 1);
+  font-weight: 100;
+  font-family: 'Poppins', sans-serif;
+}
