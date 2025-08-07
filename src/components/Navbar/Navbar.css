@@ -2,12 +2,22 @@
 .top-announcement {
   background-color: black;
   color: white;
-  font-size: 14px;
-  padding: 8px 20px;
+  font-size: 5px;
+  padding: 3px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+ 
 }
+
+.top-announcement p{
+width: 100%;
+margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+}
+
 
 .top-announcement a {
   color: white;
@@ -17,7 +27,9 @@
 
 .language-select {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
+  margin-left: 40px;
+  width: 15%;
 }
 
 /* Navbar */
@@ -28,6 +40,7 @@
   padding: 16px 20px;
   border-bottom: 1px solid #ddd;
   background-color: white;
+  margin: 0 7rem;
 }
 
 .navbar__logo {

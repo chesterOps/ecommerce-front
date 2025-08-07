@@ -1,4 +1,6 @@
 import "./Navbar.css";
+import { PiShoppingCartLight } from "react-icons/pi";
+import { IoMdHeartEmpty } from "react-icons/io";
 
 export default function Navbar() {
   return (
@@ -24,9 +26,8 @@ export default function Navbar() {
         <div className="navbar__actions">
           <input type="text" placeholder="What are you looking for?" />
           <div className="icons">
-            <span>♡</span>
-            <span>👤</span>
-            <span>🛒</span>
+            <span><IoMdHeartEmpty /></span>
+            <span><PiShoppingCartLight /></span>
           </div>
         </div>
       </nav>
