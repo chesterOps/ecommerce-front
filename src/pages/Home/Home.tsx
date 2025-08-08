@@ -10,6 +10,7 @@ import ArrivalCard from "../../components/Sections/NewArrival/ArrivalCard";
 import Features from "../../components/Sections/NewArrival/Features";
 import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
+import NewArrivalSection from "../../components/Sections/NewArrival/NewArrivalSection";
 
 export default function LandingPage() {
   return (
@@ -17,10 +18,11 @@ export default function LandingPage() {
       <Navbar />
       {/* Hero Section */}
       <HeroSection />
-       <OurProducts />
+      <NewArrivalSection />
+      <OurProducts />
       <EnhanceMusic />
 
-       <ProductCard
+      <ProductCard
         title="Wireless Headphones"
         price="$49.99"
         image="/src/assets/car.png"
@@ -40,8 +42,8 @@ export default function LandingPage() {
         rating={3}
         colors={["#888888", "#ffffff"]}
       />
-      <Button title="Shop now"/>
-      <Button title="Shop now"/>
+      <Button title="Shop now" />
+      <Button title="Shop now" />
       <Category title="Phones" />
       <Category title="Camera" />
       <Category title="Computer" />
@@ -60,16 +62,16 @@ export default function LandingPage() {
             showCounter
           />
           <Features
-  title="High Quality Sound"
-  description="Experience immersive audio with deep bass and clear treble."
-  Imgsrc="/src/assets/Services.svg"
-/>
+            title="High Quality Sound"
+            description="Experience immersive audio with deep bass and clear treble."
+            Imgsrc="/src/assets/Services.svg"
+          />
 
-           <ArrivalCard
-        image="/src/assets/ps4.svg"
-        productTitle="PlayStation 4"
-        details="Experience immersive gaming with stunning graphics."
-      />
+          <ArrivalCard
+            image="/src/assets/ps4.svg"
+            productTitle="PlayStation 4"
+            details="Experience immersive gaming with stunning graphics."
+          />
 
           <CategoryCard
             title="Women’s Fashion"
