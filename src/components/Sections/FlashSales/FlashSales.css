@@ -1,0 +1,33 @@
+.OurProducts {
+  position: relative;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-container {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  padding: 1rem 0;
+  justify-content: space-between;
+}
+
+/* Animation for smooth transition */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.slide-next {
+  animation: slideIn 0.5s ease;
+}
+
+.slide-prev {
+  animation: slideOut 0.5s ease;
+}

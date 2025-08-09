@@ -10,6 +10,7 @@ import ArrivalCard from "../../components/Sections/NewArrival/ArrivalCard";
 import Features from "../../components/Sections/NewArrival/Features";
 import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
+import FlashSales from "../../components/Sections/FlashSales/FlashSales";
 
 export default function LandingPage() {
   return (
@@ -18,6 +19,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <HeroSection />
        <OurProducts />
+       <FlashSales />
       <EnhanceMusic />
 
        <ProductCard

@@ -1,6 +1,5 @@
 .hero-section {
  width: 100%;
- background-color: #f5f5f5;
   
   
 }
@@ -12,7 +11,6 @@
 .hero-categories{
   color: #000;
   width: 250px;
-  background-color: #f5f5f5;
   padding: 20px 0;
   border-right: 1px solid #e0e0e0;
 }
@@ -44,10 +42,18 @@ display: flex;
 }
 
 
-.series{
-padding-right: 10px;
-font-size: 3rem;
+
+
+.iph{
+  position: relative;
+}
+
+.apple{
+  position: absolute;
+  bottom: 1.5px;
+  font-size: 3rem;
 font-weight: 300px;
+color: #f5f5f5;
 }
 
 .hero-categories li:hover {
@@ -93,6 +99,8 @@ font-weight: 300px;
 .banner-content p {
   font-size: 1.1rem;
   margin-bottom: 20px;
+  margin-left: 4rem;
+  padding-bottom: 9px;
 }
 
 .shop-link {
