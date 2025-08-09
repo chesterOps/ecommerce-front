@@ -21,7 +21,6 @@ export default function LandingPage() {
       <NewArrivalSection />
       <OurProducts />
       <EnhanceMusic />
-
       <ProductCard
         title="Wireless Headphones"
         price="$49.99"
