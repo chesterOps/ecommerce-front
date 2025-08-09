@@ -11,6 +11,10 @@ import Features from "../../components/Sections/NewArrival/Features";
 import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
 import NewArrivalSection from "../../components/Sections/NewArrival/NewArrivalSection";
+import CategorySection from "../../components/Sections/CategoriesSection/CategorySection";
+import BestSellingProducts from "../../components/Sections/BestSellingProducts/BestSellingProducts";
+import FlashSales from "../../components/Sections/FlashSales/FlashSales";
+
 
 export default function LandingPage() {
   return (
@@ -20,6 +24,10 @@ export default function LandingPage() {
       <HeroSection />
       <NewArrivalSection />
       <OurProducts />
+      <CategorySection />
+      <BestSellingProducts />
+      <OurProducts />
+       <FlashSales />
       <EnhanceMusic />
       <ProductCard
         title="Wireless Headphones"
