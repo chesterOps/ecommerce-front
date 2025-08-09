@@ -10,6 +10,8 @@ import ArrivalCard from "../../components/Sections/NewArrival/ArrivalCard";
 import Features from "../../components/Sections/NewArrival/Features";
 import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
+import CategorySection from "../../components/Sections/CategoriesSection/CategorySection";
+import BestSellingProducts from "../../components/Sections/BestSellingProducts/BestSellingProducts";
 
 export default function LandingPage() {
   return (
@@ -17,7 +19,9 @@ export default function LandingPage() {
       <Navbar />
       {/* Hero Section */}
       <HeroSection />
-       <OurProducts />
+      <CategorySection />
+      <BestSellingProducts />
+      <OurProducts />
       <EnhanceMusic />
 
        <ProductCard
