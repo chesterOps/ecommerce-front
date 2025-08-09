@@ -10,6 +10,8 @@ import ArrivalCard from "../../components/Sections/NewArrival/ArrivalCard";
 import Features from "../../components/Sections/NewArrival/Features";
 import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
+import CategorySection from "../../components/Sections/CategoriesSection/CategorySection";
+import BestSellingProducts from "../../components/Sections/BestSellingProducts/BestSellingProducts";
 import FlashSales from "../../components/Sections/FlashSales/FlashSales";
 
 export default function LandingPage() {
@@ -18,7 +20,9 @@ export default function LandingPage() {
       <Navbar />
       {/* Hero Section */}
       <HeroSection />
-       <OurProducts />
+      <CategorySection />
+      <BestSellingProducts />
+      <OurProducts />
        <FlashSales />
       <EnhanceMusic />
 
