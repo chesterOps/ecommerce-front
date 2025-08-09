@@ -12,6 +12,7 @@ import Button from "../../components/Button/Button";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
 import CategorySection from "../../components/Sections/CategoriesSection/CategorySection";
 import BestSellingProducts from "../../components/Sections/BestSellingProducts/BestSellingProducts";
+import FlashSales from "../../components/Sections/FlashSales/FlashSales";
 
 export default function LandingPage() {
   return (
@@ -22,6 +23,7 @@ export default function LandingPage() {
       <CategorySection />
       <BestSellingProducts />
       <OurProducts />
+       <FlashSales />
       <EnhanceMusic />
 
        <ProductCard
