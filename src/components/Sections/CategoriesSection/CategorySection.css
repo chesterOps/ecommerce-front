@@ -1,24 +1,12 @@
-.categorycards{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 25px;
-    gap: 16px;
-    justify-content: center;
-}
-.category-section{
-    max-width: 1170px;
-    margin: 0 auto;
-}
-/* Tablet view: 2 per row */
-@media (max-width: 768px) {
-    .categorycards > * {
-        flex: 1 1 calc(50% - 16px);
-    }
+.border {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 40px;
+  margin-bottom: 56px;
 }
 
-/* Mobile view: 1 per row */
-@media (max-width: 480px) {
-    .categorycards > * {
-        flex: 1 1 100%;
-    }
+@media (min-width: 768px) {
+  .border {
+    padding-bottom: 60px;
+    margin-bottom: 80px;
+  }
 }

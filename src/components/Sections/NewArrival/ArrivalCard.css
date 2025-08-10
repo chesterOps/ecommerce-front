@@ -1,64 +1,8 @@
 .arrival-card {
-    position: relative;
-  background-color: #000000;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 40px;
-  width: 540px;
-  display: flex;
-  flex-direction: column;
   transition: transform 0.3s ease;
-  font-family: "Poppins", sans-serif;
-}
-
-.arrival-card h3, p{
-color: #ffffff;
-font-weight: 500;
-font-size: 24px;
-margin-bottom: 20px;
-
-}
-
-.arrival-details1{
-   position: absolute;
-    bottom: 40px;
-    width: 60%;
+  cursor: pointer;
 }
 
 .arrival-card:hover {
   transform: translateY(-6px);
-}
-
-.arrival-image {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-.arrival-details {
-  font-size: 16px;
-  font-weight: 100;
-  color: #ffffff;
-  margin-bottom: 10px;
-  font-family: "Poppins", sans-serif;
-}
-
-.arrival-button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: grey;
-  transition: color 0.3s ease;
-}
-
-.arrival-button:hover {
-  color: #aca7a7;
-  text-decoration-color: #aca7a7;
-  text-decoration-color: #222;
 }

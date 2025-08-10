@@ -1,33 +1,48 @@
-.OurProducts {
-  position: relative;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.flash-sales {
+  margin-bottom: 56px;
 }
 
-.products-container {
-  display: flex;
-  gap: 20px;
+.flash-sales .button-container {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.carousel-wrapper {
   overflow: hidden;
-  padding: 1rem 0;
-  justify-content: space-between;
+  width: 100%;
 }
 
-/* Animation for smooth transition */
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+.carousel-track {
+  display: flex;
+  gap: 30px;
+  transition: transform 0.4s ease;
 }
 
-@keyframes slideOut {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+.carousel-track .product-card {
+  flex: 0 0 100%; /* 4 cards per view, 3 gaps */
+  box-sizing: border-box;
 }
 
-.slide-next {
-  animation: slideIn 0.5s ease;
+@media (min-width: 480px) {
+  .carousel-track .product-card {
+    flex: 0 0 calc(50% - 15px);
+    box-sizing: border-box;
+  }
 }
 
-.slide-prev {
-  animation: slideOut 0.5s ease;
+@media (min-width: 768px) {
+  .flash-sales .button-container {
+    padding-bottom: 60px;
+  }
+
+  .flash-sales {
+    margin-bottom: 80px;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel-track .product-card {
+    flex: 0 0 calc((100% - (30px * 3)) / 4);
+    box-sizing: border-box;
+  }
 }

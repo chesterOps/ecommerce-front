@@ -1,6 +1,6 @@
 import React from "react";
 import "./ArrowControls.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 interface ArrowControlsProps {
   onLeftClick?: () => void;
@@ -14,10 +14,10 @@ const ArrowControls: React.FC<ArrowControlsProps> = ({
   return (
     <div className="arrow-controls">
       <button className="arrow-button" onClick={onLeftClick}>
-        <FaArrowLeft />
+        <IoArrowBack size={24} />
       </button>
       <button className="arrow-button" onClick={onRightClick}>
-        <FaArrowRight />
+        <IoArrowForward size={24} />
       </button>
     </div>
   );

@@ -1,40 +1,28 @@
 .category-card2 {
   background-color: #ffffff;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 24px;
   text-align: center;
-  width: 170px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   transition: transform 0.2s ease;
-  font-family: 
-  "Poppins", "San-serif";
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Poppins", "San-serif";
 }
 
 .category-card2:hover {
   transform: translateY(-4px);
-  background-color: #DB4444;
+  background-color: #db4444;
   color: white;
-  border: none;
-}
-
-.category-icon {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.category-card2 img {
-  width: 100%;
-  height: auto;
-  max-height: 120px;
-  object-fit: contain;
-  margin-bottom: 12px;
+  border-color: #db4444;
+  cursor: pointer;
 }
 
 .category-card2 h3 {
-  font-size: 1rem;
+  font-size: 16px;
+  line-height: 24px;
   margin: 0;
-  font-weight:300;
-   font-family: 
-  "Poppins", "San-serif";
+  font-weight: 400;
+  font-family: "Poppins", "San-serif";
 }
