@@ -1,7 +1,5 @@
 import "./Home.css";
 import HeroSection from "../../components/Sections/HeroSection/Hero";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
 import EnhanceMusic from "../../components/Sections/EnhanceMusic/EnhanceMusic";
 import OurProducts from "../../components/Sections/OurProducts/OurProducts";
 import CategorySection from "../../components/Sections/CategoriesSection/CategorySection";
@@ -12,7 +10,6 @@ import NewArrivalSection from "../../components/Sections/NewArrival/NewArrivalSe
 export default function LandingPage() {
   return (
     <div className="landing-page">
-      <Navbar />
       <HeroSection />
       <FlashSales />
       <CategorySection />
@@ -20,7 +17,6 @@ export default function LandingPage() {
       <EnhanceMusic />
       <OurProducts />
       <NewArrivalSection />
-      <Footer />
     </div>
   );
 }

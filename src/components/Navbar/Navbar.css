@@ -41,7 +41,10 @@
   padding-top: 28px;
   padding-bottom: 16px;
 }
-
+.navbar a{
+  text-decoration: none;
+  color: #000;
+}
 .navbar .container {
   display: flex;
   align-items: center;
