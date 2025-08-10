@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -44,11 +45,11 @@ export default function Footer() {
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Account</h4>
             <ul>
-              <li>My Account</li>
-              <li>Login / Register</li>
-              <li>Cart</li>
-              <li>Wishlist</li>
-              <li>Shop</li>
+              <Link to="/account">My Account</Link>
+              <Link to="/login">Login / Register</Link>
+              <Link to="/cart">Cart</Link>
+              <Link to="/wishlist">Wishlist</Link>
+              <Link to="/shop">Shop</Link>
             </ul>
           </div>
 
@@ -58,7 +59,7 @@ export default function Footer() {
               <li>Privacy Policy</li>
               <li>Terms Of Use</li>
               <li>FAQ</li>
-              <li>Contact</li>
+              <Link target="_blank" to="/contact">Contact</Link>
             </ul>
           </div>
 
@@ -69,18 +70,18 @@ export default function Footer() {
               <img src="/src/assets/footerimg.png" alt="Download App" />
             </div>
             <div className="socials">
-              <a href="#">
+              <Link target="_blank" to="https://www.facebook.com">
                 <FaFacebookF size={24} />
-              </a>
-              <a href="#">
+              </Link>
+              <Link target="_blank" to="www.twitter.com">
                 <FaTwitter size={24} />
-              </a>
-              <a href="#">
+              </Link>
+              <Link target="_blank" to="www.instagram.com">
                 <FaInstagram size={24} />
-              </a>
-              <a href="#">
+              </Link>
+              <Link target="_blank" to="www.linkedin.com">
                 <FaLinkedinIn size={24} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

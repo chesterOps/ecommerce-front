@@ -5,6 +5,16 @@
   padding: 56px 0px 0px;
 }
 
+.footer a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
 .footer__col h4 {
   font-size: 20px;
   line-height: 28px;
@@ -28,11 +38,9 @@
 .footer__col input[type="email"] {
   padding: 12px 12px 12px 16px;
   width: 100%;
-
-  border: none;
   border-radius: 4px;
   border: 1.5px solid white;
-  background-color: transparent;
+  background-color: black;
   color: #fff;
 }
 
@@ -90,6 +98,10 @@
 
 .socials a {
   color: #ffffff;
+}
+
+.socials a:hover {
+  color: #a4a4a4;
 }
 
 @media (min-width: 768px) {
