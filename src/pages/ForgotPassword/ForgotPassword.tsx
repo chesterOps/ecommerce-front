@@ -5,11 +5,38 @@ import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Password reset link sent to:", email);
-    // API call for sending reset email goes here
+    setLoading(true);
+    setMessage("");
+    setError("");
+
+    try {
+      const response = await fetch(
+        "https://apiexclusive.onrender.com/api/v1/auth/forgot-password",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message || "Password reset link sent to your email.");
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,13 +68,20 @@ const ForgotPassword = () => {
             />
 
             <div className="forgot-actions">
-              <button type="submit" className="forgot-btn">
-                Reset Password
+              <button
+                type="submit"
+                className="forgot-btn"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Reset Password"}
               </button>
               <Link to="/login" className="forgot-back">
                 Back to Login
               </Link>
             </div>
+
+            {message && <p className="success-message">{message}</p>}
+            {error && <p className="error-message">{error}</p>}
           </form>
         </div>
       </div>
