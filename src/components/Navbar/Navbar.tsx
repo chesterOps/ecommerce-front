@@ -43,7 +43,7 @@ export default function Navbar() {
               <input type="text" placeholder="What are you looking for?" />
               <PiMagnifyingGlass className="bs" size={24} />
             </div>
-            <div className="icons">
+            <div className="navbar-icons">
               <Link to="/wishlist"><IoMdHeartEmpty size={28} /></Link>
               <Link to="/cart"><PiShoppingCartLight size={28} /></Link>
               <Link to="/account"><BiUser size={28} /></Link>
