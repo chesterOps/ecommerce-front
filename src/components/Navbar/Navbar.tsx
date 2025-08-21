@@ -24,15 +24,18 @@ export default function Navbar() {
       </div>
       <nav className="navbar">
         <div className="container">
-          <div className="navbar__logo">Exclusive</div>
+          <Link to="/">
+            <div className="navbar__logo">Exclusive</div>
+          </Link>
           <ul className="navbar__links">
             <li>
-             <Link to ="/">Home</Link></li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/contact">Contact</Link>
             </li>
             <li>
-             <Link to="/about">About</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/signup">Sign Up</Link>
@@ -44,9 +47,15 @@ export default function Navbar() {
               <PiMagnifyingGlass className="bs" size={24} />
             </div>
             <div className="icons">
-              <Link to="/wishlist"><IoMdHeartEmpty size={28} /></Link>
-              <Link to="/cart"><PiShoppingCartLight size={28} /></Link>
-              <Link to="/account"><BiUser size={28} /></Link>
+              <Link to="/wishlist">
+                <IoMdHeartEmpty size={28} />
+              </Link>
+              <Link to="/cart">
+                <PiShoppingCartLight size={28} />
+              </Link>
+              <Link to="/account">
+                <BiUser size={28} />
+              </Link>
             </div>
           </div>
         </div>

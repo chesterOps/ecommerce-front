@@ -4,63 +4,42 @@ import CategoryCard from "../../CategoryCard/CategoryCard";
 import ProductCard from "../../ProductCard/ProductCard";
 import ArrowControls from "../../ArrowButtons/ArrowControls";
 import { useState, useEffect } from "react";
-
-// All product data
-const allProducts = [
-  {
-    id: 1,
-    title: "Wireless Headphones",
-    price: 49.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 140,
-    rating: 4,
-  },
-  {
-    id: 2,
-    title: "Bluetooth Speaker",
-    price: 59.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 120,
-    rating: 5,
-  },
-  {
-    id: 3,
-    title: "Smart Watch",
-    price: 99.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 200,
-    rating: 4,
-  },
-  {
-    id: 4,
-    title: "Laptop Backpack",
-    price: 39.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 80,
-    rating: 4,
-  },
-  {
-    id: 5,
-    title: "Wireless Earbuds",
-    price: 29.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 95,
-    rating: 3,
-  },
-  {
-    id: 6,
-    title: "Power Bank",
-    price: 24.99,
-    image: "/src/assets/car.jpg",
-    numberOfRatings: 150,
-    rating: 4,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const FlashSales = () => {
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const [slideWidth, setSlideWidth] = useState("25% + 7.5px");
   const width = Number(slideWidth.split(" + ").at(0)?.replace("%", ""));
+
+  const fetchFlashSales = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://apiexclusive.onrender.com/api/v1/products/flash-sales",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.status === "success") setProducts(data.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFlashSales();
+  }, []);
 
   useEffect(() => {
     const updateSlideWidth = () => {
@@ -81,7 +60,7 @@ const FlashSales = () => {
   }, []);
 
   const next = () => {
-    if (index < allProducts.length - 100 / width) {
+    if (index < products.length - 100 / width) {
       setIndex(index + 1);
     }
   };
@@ -102,27 +81,30 @@ const FlashSales = () => {
       />
       <div className="container">
         <div className="carousel-wrapper">
-          <div
-            className="carousel-track"
-            style={{
-              transform: `translateX(calc(-${index} * (${slideWidth})))`,
-              transition: "transform 0.4s ease",
-            }}
-          >
-            {allProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                title={product.title}
-                price={product.price}
-                image={product.image}
-                numberOfRatings={product.numberOfRatings}
-                rating={product.rating}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {products.length > 0 ? (
+                <div
+                  className="carousel-track"
+                  style={{
+                    transform: `translateX(calc(-${index} * (${slideWidth})))`,
+                    transition: "transform 0.4s ease",
+                  }}
+                >
+                  {products.map((product, index) => (
+                    <ProductCard key={index} product={product} />
+                  ))}
+                </div>
+              ) : (
+                <div>No Products found</div>
+              )}
+            </>
+          )}
         </div>
         <div className="button-container">
-          <Button title="View All Products" />
+          <Button onClick={() => navigate("/shop")} title="View All Products" />
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function App() {
     <Router>
       <Navbar />
       <Breadcrumb />
-      <main style={{ minHeight: "70vh" }}>
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:slug" element={<ProductDetails />} />

@@ -14,7 +14,9 @@ export default function Footer() {
       <div className="container">
         <div className="row">
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
-            <h4 className="logo">Exclusive</h4>
+            <Link to="/">
+              <h4 className="logo">Exclusive</h4>
+            </Link>
             <h4 className="subscribe">Subscribe</h4>
             <p>Get 10% off your first order</p>
             <div className="footer__email">
@@ -24,7 +26,6 @@ export default function Footer() {
               </button>
             </div>
           </div>
-
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Support</h4>
             <ul>
@@ -45,21 +46,39 @@ export default function Footer() {
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Account</h4>
             <ul>
-              <Link to="/account">My Account</Link>
-              <Link to="/login">Login / Register</Link>
-              <Link to="/cart">Cart</Link>
-              <Link to="/wishlist">Wishlist</Link>
-              <Link to="/shop">Shop</Link>
+              <li>
+                <Link to="/account">My Account</Link>
+              </li>
+              <li>
+                <Link to="/login">Login / Register</Link>
+              </li>
+              <li>
+                <Link to="/cart">Cart</Link>
+              </li>
+              <li>
+                <Link to="/wishlist">Wishlist</Link>
+              </li>
+              <li>
+                <Link to="/shop">Shop</Link>
+              </li>
             </ul>
           </div>
 
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Quick Link</h4>
             <ul>
-              <li>Privacy Policy</li>
-              <li>Terms Of Use</li>
-              <li>FAQ</li>
-              <Link target="_blank" to="/contact">Contact</Link>
+              <li>
+                <Link to="#">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="#">Terms Of Use</Link>
+              </li>
+              <li>
+                <Link to="#">FAQ</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
             </ul>
           </div>
 
