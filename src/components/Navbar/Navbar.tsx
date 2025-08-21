@@ -34,7 +34,9 @@ export default function Navbar() {
       </div>
       <nav className="navbar">
         <div className="container">
-          <div className="navbar__logo">Exclusive</div>
+          <Link to="/">
+            <div className="navbar__logo">Exclusive</div>
+          </Link>
           <ul className="navbar__links">
             <li>
               <Link to="/">Home</Link>
