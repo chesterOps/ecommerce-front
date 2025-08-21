@@ -18,38 +18,61 @@ const categories = [
 
 const sampleProducts = [
   {
-    title: "Red Dress",
-    price: 45,
-    image: "src/assets/car.png",
-    rating: 4,
-    numberOfRatings: 120,
-    isNew: true,
-    discount: 10,
-  },
-  {
-    title: "Men's Sneakers",
-    price: 70,
-    image: "src/assets/car.png",
-    rating: 5,
-    numberOfRatings: 240,
-    discount: 15,
-  },
-  {
     title: "Wireless Headphones",
     price: 120,
-    image: "src/assets/car.png",
-    rating: 4,
-    numberOfRatings: 95,
-    isNew: true,
+    images: [
+      {
+        url: "src/assets/car.png",
+        public_id: "headphones1"
+      }
+    ],
+    slug: "wireless-headphones",
+    createdAt: new Date(),
+    discount: 20,
+    colors: ["black", "white"]
   },
   {
-    title: "Luxury Sofa",
-    price: 560,
-    image: "src/assets/car.png",
-    rating: 3,
-    numberOfRatings: 34,
+    title: "Smart Watch",
+    price: 250,
+    images: [
+      {
+        url: "src/assets/car.png",
+        public_id: "smartwatch1"
+      }
+    ],
+    slug: "smart-watch",
+    createdAt: new Date(),
+    discount: 15,
+    colors: ["silver", "black"]
   },
+  {
+    title: "Gaming Mouse",
+    price: 60,
+    images: [
+      {
+        url: "src/assets/car.png",
+        public_id: "mouse1"
+      }
+    ],
+    slug: "gaming-mouse",
+    createdAt: new Date(),
+    colors: ["red", "blue"]
+  },
+  {
+    title: "Bluetooth Speaker",
+    price: 180,
+    images: [
+      {
+        url: "src/assets/car.png",
+        public_id: "speaker1"
+      }
+    ],
+    slug: "bluetooth-speaker",
+    createdAt: new Date(),
+    discount: 10
+  }
 ];
+
 
 export default function ShopPage() {
   return (
@@ -67,12 +90,12 @@ export default function ShopPage() {
               <Button title="See All" />
             </Link>
           </div>
+<div className="products-grid2">
+  {sampleProducts.map((product, index) => (
+    <ProductCard key={index} product={product} />
+  ))}
+</div>
 
-          <div className="products-grid2">
-            {sampleProducts.map((product, index) => (
-              <ProductCard key={index} {...product} />
-            ))}
-          </div>
         </section>
       ))}
     </div>
