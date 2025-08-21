@@ -5,6 +5,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+.product-card a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .price-ratings {
   display: flex;
   align-items: center;

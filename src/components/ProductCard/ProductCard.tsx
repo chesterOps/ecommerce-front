@@ -3,6 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import "./ProductCard.css";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   title: string;
@@ -52,9 +53,11 @@ export default function ProductCard({
               <FaRegHeart size={18} />
             )}
           </span>
+          <Link to={`/product/${title.replace(/\s+/g, '-').toLowerCase()}`}>
           <span className="icon-container">
             <FiEye size={18} />
           </span>
+          </Link>
         </div>
         <img src={image} alt={title} className="product-image" />
         <button className="add-to-cart-btn">Add to Cart</button>

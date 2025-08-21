@@ -2,9 +2,19 @@ import { BiUser } from "react-icons/bi";
 import { IoIosArrowDown, IoMdHeartEmpty } from "react-icons/io";
 import { PiMagnifyingGlass, PiShoppingCartLight } from "react-icons/pi";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+    }
+  };
   return (
     <>
       <div className="top-announcement">
@@ -27,26 +37,39 @@ export default function Navbar() {
           <div className="navbar__logo">Exclusive</div>
           <ul className="navbar__links">
             <li>
-             <Link to ="/">Home</Link></li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/contact">Contact</Link>
             </li>
             <li>
-             <Link to="/about">About</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/signup">Sign Up</Link>
             </li>
           </ul>
           <div className="navbar__actions">
-            <div className="for">
-              <input type="text" placeholder="What are you looking for?" />
+            {/* Search Bar */}
+            <form className="for" onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="What are you looking for?"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
               <PiMagnifyingGlass className="bs" size={24} />
-            </div>
+            </form>
             <div className="icons">
-              <Link to="/wishlist"><IoMdHeartEmpty size={28} /></Link>
-              <Link to="/cart"><PiShoppingCartLight size={28} /></Link>
-              <Link to="/account"><BiUser size={28} /></Link>
+              <Link to="/wishlist">
+                <IoMdHeartEmpty size={28} />
+              </Link>
+              <Link to="/cart">
+                <PiShoppingCartLight size={28} />
+              </Link>
+              <Link to="/account">
+                <BiUser size={28} />
+              </Link>
             </div>
           </div>
         </div>
