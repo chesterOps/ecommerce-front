@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { TbTruck } from "react-icons/tb";
 import { BiRotateLeft } from "react-icons/bi";
-import {  FaEye, FaStar, FaRegStar } from "react-icons/fa";
+import { FaEye, FaStar, FaRegStar } from "react-icons/fa";
 import "./ProductDetails.css";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
+import { useParams } from "react-router-dom";
 
-interface Product {
+interface IProduct {
   id: number;
   name: string;
   price: number;
@@ -18,7 +19,7 @@ interface Product {
   reviews: number;
 }
 
-const products: Product[] = [
+const product: IProduct[] = [
   {
     id: 1,
     name: "HAVIT HV-G92 Gamepad",
@@ -62,10 +63,13 @@ const products: Product[] = [
 ];
 
 const ProductDetails: React.FC = () => {
+  const params = useParams<{ slug: string }>();
   const [selectedImage, setSelectedImage] = useState<number>(0);
   const [selectedColor, setSelectedColor] = useState<string>("blue");
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(2);
+
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const images: string[] = [
     "/src/assets/gamepad.svg", // Main gamepad image
@@ -84,6 +88,19 @@ const ProductDetails: React.FC = () => {
   const handleQuantityChange = (change: number): void => {
     setQuantity(Math.max(1, quantity + change));
   };
+
+  useEffect(() => {
+    const getProductDetails = () => {
+      fetch(`https://apiexclusive.onrender.com/api/v1/products/${params.slug}`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    getProductDetails();
+  }, [params]);
 
   return (
     <div className="product-page">
@@ -215,11 +232,10 @@ const ProductDetails: React.FC = () => {
           <div className="block-it"></div>
           <h3 className="related-title">Related Item</h3>
         </div>
-        
 
         <div className="product-list">
-          {products.map((item) => (
-            <div key={item.id} className="game-card">
+          {product.map((item, index) => (
+            <div key={index} className="game-card">
               <div className="image-box">
                 {/* ✅ discount badge on image */}
                 <span className="discount">{item.discount}</span>
@@ -227,7 +243,7 @@ const ProductDetails: React.FC = () => {
                 <img src={item.image} alt={item.name} />
 
                 <div className="icons">
-                  <CiHeart className="heart-icon"/>
+                  <CiHeart className="heart-icon" />
                   <IoEyeOutline className="eye-icon" />
                 </div>
               </div>
@@ -235,20 +251,18 @@ const ProductDetails: React.FC = () => {
               <div className="game-info">
                 <h4 className="product-name">{item.name}</h4>
 
-              <div className="price">
-                <span className="new-price">${item.price}</span>
-                <span className="old-price">${item.oldPrice}</span>
-              </div>
+                <div className="price">
+                  <span className="new-price">${item.price}</span>
+                  <span className="old-price">${item.oldPrice}</span>
+                </div>
 
-              <div className="rating">
-                {Array.from({ length: 5 }, (_, i) =>
-                  i < item.rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-                )}
-                <span className="reviews">({item.reviews})</span>
+                <div className="rating">
+                  {Array.from({ length: 5 }, (_, i) =>
+                    i < item.rating ? <FaStar key={i} /> : <FaRegStar key={i} />
+                  )}
+                  <span className="reviews">({item.reviews})</span>
+                </div>
               </div>
-              </div>
-
-              
 
               <button className="cart-btn">Add To Cart</button>
             </div>

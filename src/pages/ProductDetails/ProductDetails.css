@@ -46,6 +46,7 @@
 }
 
 
+
 .thumbnail img {
   width: 100%;
   height: 100%;
@@ -366,17 +367,19 @@
   gap: 20px;
   flex-wrap: wrap;
   width: 100%;   
+  position: relative;
 }
 .game-info{
   text-align: left;
 }
 .game-card {
-  position: relative;
+  /* position: absolute; */
   background: #fff;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
   width: 270px;
+  z-index: 2;
 }
 
 .game-card:hover {
