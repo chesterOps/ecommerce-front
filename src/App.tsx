@@ -27,7 +27,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/shop/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
@@ -38,7 +38,7 @@ export default function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/track-order/:orderId" element={<TrackOrder />} /> 
+          <Route path="/track-order/:orderId" element={<TrackOrder />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/orders" element={<Order />} />
           <Route path="/search/:query" element={<Search />} />
