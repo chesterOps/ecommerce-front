@@ -6,7 +6,6 @@ import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 export default function Navbar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +40,6 @@ export default function Navbar() {
           </Link>
           <ul className="navbar__links">
             <li>
-
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -65,7 +63,7 @@ export default function Navbar() {
               />
               <PiMagnifyingGlass className="bs" size={24} />
             </form>
-            <div className="icons">
+            <div className="navbar-icons">
               <Link to="/wishlist">
                 <IoMdHeartEmpty size={28} />
               </Link>
