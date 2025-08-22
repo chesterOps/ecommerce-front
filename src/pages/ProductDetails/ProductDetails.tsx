@@ -114,7 +114,7 @@ const ProductDetails: React.FC = () => {
                     {product.stock > 0 ? "In Stock" : "Out of stock"}
                   </span>
                 </div>
-                <div className="price">{product.price}</div>
+                <div className="price">${product.price}</div>
                 <p className="description">{product.description}</p>
                 {(product.colors || product.sizes) && (
                   <div className="p-options">
