@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import "./Signup.css";
@@ -87,6 +88,7 @@ const Signup: React.FC = () => {
     }
   };
 
+
   return (
     <div className="signup-page">
       {/* Left image section */}
@@ -100,16 +102,20 @@ const Signup: React.FC = () => {
           <h2 className="signup-title">Create an account</h2>
           <p className="signup-subtitle">Enter your details below</p>
 
+
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
 
           <form className="signup-form" onSubmit={handleSubmit}>
+
             <input
               type="text"
               placeholder="Name"
               className="signup-input"
+
               value={name}
               onChange={(e) => setName(e.target.value)}
+
               required
             />
             <input
@@ -126,18 +132,22 @@ const Signup: React.FC = () => {
               className="signup-input"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+
               required
             />
             <input
               type="password"
               placeholder="Password"
               className="signup-input"
+
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+
               required
             />
 
             {/* Google Sign-in Button */}
+
             <button
               type="button"
               className="signup-google-btn"
@@ -147,7 +157,6 @@ const Signup: React.FC = () => {
               <img src="src/assets/Icon-Google.svg" alt="Google" />
               Sign in with Google
             </button>
-
             {/* Create Account Button */}
             <button type="submit" className="signup-btn" disabled={loading}>
               {loading ? "Please wait..." : "Create Account"}

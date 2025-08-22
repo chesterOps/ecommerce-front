@@ -63,10 +63,10 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Quick Link</h4>
             <ul>
+
               <li>
                 <Link to="#">Privacy Policy</Link>
               </li>
@@ -79,6 +79,8 @@ export default function Footer() {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
+
+              
             </ul>
           </div>
 

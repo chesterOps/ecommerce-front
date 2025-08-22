@@ -19,7 +19,6 @@ import Order from "./pages/Orders/Order";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
 
-
 export default function App() {
   return (
     <Router>

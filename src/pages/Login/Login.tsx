@@ -61,12 +61,10 @@ const Login = () => {
       <div className="login-image">
         <img src="/src/assets/SideImage.png" alt="Shopping Illustration" />
       </div>
-
       <div className="login-form-section">
         <div className="login-form-wrapper">
           <h2 className="login-title">Log in to Exclusive</h2>
           <p className="login-subtitle">Enter your details below</p>
-
           <form className="login-form" onSubmit={handleSubmit}>
             <input
               type="email"
@@ -92,6 +90,7 @@ const Login = () => {
             <div className="login-actions">
               <button type="submit" className="login-btn" disabled={loading}>
                 {loading ? "Logging in..." : "Log In"}
+
               </button>
               <Link to="/forgot-password" className="login-forgot">
                 Forget Password?

@@ -5,6 +5,7 @@ import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -37,6 +38,7 @@ const ForgotPassword = () => {
     } finally {
       setLoading(false);
     }
+
   };
 
   return (
@@ -66,7 +68,6 @@ const ForgotPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
             <div className="forgot-actions">
               <button
                 type="submit"
@@ -79,7 +80,6 @@ const ForgotPassword = () => {
                 Back to Login
               </Link>
             </div>
-
             {message && <p className="success-message">{message}</p>}
             {error && <p className="error-message">{error}</p>}
           </form>

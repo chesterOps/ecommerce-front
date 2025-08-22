@@ -2,8 +2,10 @@ import { BiUser } from "react-icons/bi";
 import { IoIosArrowDown, IoMdHeartEmpty } from "react-icons/io";
 import { PiMagnifyingGlass, PiShoppingCartLight } from "react-icons/pi";
 import "./Navbar.css";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ export default function Navbar() {
           </Link>
           <ul className="navbar__links">
             <li>
+
               <Link to="/">Home</Link>
             </li>
             <li>
