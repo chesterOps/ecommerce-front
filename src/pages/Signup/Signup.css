@@ -134,6 +134,15 @@
   color: #000; 
 }
 
+.error-message{
+  color: red;
+}
+
+.success-message{
+  color: green;
+}
+
+
 @media (max-width: 700px) {
     .signup-page {
         flex-direction: column;
