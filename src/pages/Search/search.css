@@ -1,0 +1,25 @@
+.search-page {
+  padding: 40px 20px;
+}
+
+.search-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.search-title span {
+  color: crimson;
+}
+
+.loading,
+.no-results {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}

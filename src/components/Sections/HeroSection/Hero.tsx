@@ -5,7 +5,7 @@ import slide3 from "../../../assets/iphone.jpg";
 import slide4 from "../../../assets/iphone.jpg";
 import slide5 from "../../../assets/iphone.jpg";
 import { useEffect, useState } from "react";
-import { IoChevronForward } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const banners = [slide1, slide2, slide3, slide4, slide5];
@@ -25,18 +25,32 @@ export default function HeroSection() {
         <aside className="hero-categories">
           <ul>
             <li>
-              Women's Fashion <IoChevronForward size={20} />
+              <Link to="/category/womens-fashion">Women's Fashion</Link>
             </li>
             <li>
-              Men's Fashion <IoChevronForward size={20} />
+              <Link to="/category/mens-fashion">Men's Fashion</Link>
             </li>
-            <li>Electronics</li>
-            <li>Home & Lifestyle</li>
-            <li>Medicine</li>
-            <li>Sports & Outdoor</li>
-            <li>Baby's & Toys</li>
-            <li>Groceries & Pets</li>
-            <li>Health & Beauty</li>
+            <li>
+              <Link to="/category/electronics">Electronics</Link>
+            </li>
+            <li>
+              <Link to="/category/home-and-lifestyle">Home & Lifestyle</Link>
+            </li>
+            <li>
+              <Link to="/category/medicine">Medicine</Link>
+            </li>
+            <li>
+              <Link to="/category/sports-and-outdoor">Sports & Outdoor</Link>
+            </li>
+            <li>
+              <Link to="/category/babies-and-toys">Baby's & Toys</Link>
+            </li>
+            <li>
+              <Link to="/category/groceries-and-pets">Groceries & Pets</Link>
+            </li>
+            <li>
+              <Link to="/category/health-and-beauty">Health & Beauty</Link>
+            </li>
           </ul>
         </aside>
         {/* Main Hero Content */}

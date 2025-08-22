@@ -30,7 +30,12 @@
   cursor: pointer;
 }
 
-.hero-categories li:hover {
+.hero-categories li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.hero-categories li a:hover {
   color: #db4444;
 }
 

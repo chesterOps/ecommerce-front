@@ -1,6 +1,7 @@
 import Button from "../../Button/Button";
-import "./EnhanceSection.css";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./EnhanceSection.css";
 
 const EnhanceMusic = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -14,7 +15,6 @@ const EnhanceMusic = () => {
     const startFromNow = Date.now();
     const totalSeconds = 5 * 24 * 60 * 60 + 24 * 60 * 60 + 59 * 60 + 35;
     const targetDate = new Date(startFromNow + totalSeconds * 1000);
-    console.log(targetDate);
 
     const updateTimer = () => {
       const now = new Date();
@@ -42,33 +42,35 @@ const EnhanceMusic = () => {
 
   return (
     <div className="container">
-      <div className="enhance-music">
-        <div className="left">
-          <div className="category-text">
-            <h3>Categories</h3>
-            <h1>Enhance Your Music Experience</h1>
-            <div className="counter">
-              <div className="circle-box">
-                <b>{timeLeft.days}</b>
-                <span>Days</span>
+      <Link to="/shop/jbl-charge-6">
+        <div className="enhance-music">
+          <div className="left">
+            <div className="category-text">
+              <h3>Categories</h3>
+              <h1>Enhance Your Music Experience</h1>
+              <div className="counter">
+                <div className="circle-box">
+                  <b>{timeLeft.days}</b>
+                  <span>Days</span>
+                </div>
+                <div className="circle-box">
+                  <b>{timeLeft.hours}</b>
+                  <span>Hours</span>
+                </div>
+                <div className="circle-box">
+                  <b>{timeLeft.minutes}</b>
+                  <span>Minutes</span>
+                </div>
+                <div className="circle-box">
+                  <b>{timeLeft.seconds}</b>
+                  <span>Seconds</span>
+                </div>
               </div>
-              <div className="circle-box">
-                <b>{timeLeft.hours}</b>
-                <span>Hours</span>
-              </div>
-              <div className="circle-box">
-                <b>{timeLeft.minutes}</b>
-                <span>Minutes</span>
-              </div>
-              <div className="circle-box">
-                <b>{timeLeft.seconds}</b>
-                <span>Seconds</span>
-              </div>
+              <Button title="Buy Now!" />
             </div>
-            <Button title="Buy Now!" />
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
