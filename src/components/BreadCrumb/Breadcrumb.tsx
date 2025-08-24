@@ -32,16 +32,27 @@ export default function Breadcrumb() {
   // Build items according to your rules
   let items: CrumbItem[] = [{ label: "Home", path: "/" }];
 
-  // Product Details: Account / categoryname / productname
-  if (pathname.startsWith("/product/")) {
-    const categoryName = (state && state.categoryName) || "Category";
-    const productName = (state && state.productName) || humanize(pathname.split("/")[2] || "");
-    items = [
-      { label: "Account", path: "/account" }, // as per your rule
-      { label: categoryName, path: `/category/${(state && state.categorySlug) || categoryName.toLowerCase()}` },
-      { label: productName } // current, no path
-    ];
-  }
+  // Product Details: Home / Shop / Category / ProductName
+if (pathname.startsWith("/product/")) {
+  const categoryName = (state && state.categoryName) || "Category";
+  const productName = (state && state.productName) || humanize(pathname.split("/")[2] || "");
+  items = [
+    { label: "Home", path: "/" },
+    { label: "Shop", path: "/shop" },
+    { label: categoryName, path: `/category/${(state && state.categorySlug) || categoryName.toLowerCase()}` },
+    { label: productName } // current
+  ];
+}
+// Search: Home / Shop / [Query]
+else if (pathname.startsWith("/search")) {
+  const query = new URLSearchParams(location.search).get("q") || "Results";
+  items = [
+    { label: "Home", path: "/" },
+    { label: "Shop", path: "/shop" },
+    { label: query }
+  ];
+}
+
   // Checkout (Account / My Account / Product / View Cart / Checkout)
   else if (pathname === "/checkout") {
     items = [

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface CategoryCardProps {
   title: string;
-  heading: string;
+  heading?: string;
   showArrows?: boolean;
   showButton?: boolean;
   showCounter?: boolean;

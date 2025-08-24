@@ -107,7 +107,7 @@
   transform: translateY(-50%);
 }
 
-.icons {
+.navbar-icons {
   display: flex;
   align-items: center;
   gap: 16px;
