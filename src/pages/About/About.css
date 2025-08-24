@@ -188,13 +188,14 @@
   width: 100%;
   max-width: 630px;
   height: auto;
-  margin: 20px 0;
+  margin: 100px ;
 }
 
 .rightPicture img {
   width: 100%;
   height: auto;
   object-fit: cover;
+
 }
 
 .statistics-section {
@@ -364,7 +365,12 @@
   .rightPicture {
     flex: 1;
     margin: 0;
-    margin-left: 32px;
+    margin: 50px;
+  }
+
+  .rightPicture img {
+    width: 90%;
+
   }
 
   .statistics-section {
