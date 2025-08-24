@@ -1,4 +1,3 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Breadcrumb from "./components/BreadCrumb/Breadcrumb";
@@ -18,6 +17,7 @@ import Search from "./pages/Search/search";
 import Order from "./pages/Orders/Order";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (

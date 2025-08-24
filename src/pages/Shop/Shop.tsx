@@ -1,103 +1,63 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import Button from "../../components/Button/Button";
+//import Button from "../../components/Button/Button";
 import "./Shop.css";
-
-
-const categories = [
-  "Women's Fashion",
-  "Men's Fashion",
-  "Electronics",
-  "Home & Lifestyle",
-  "Medicine",
-  "Sports & Outdoor",
-  "Baby's & Toys",
-  "Groceries & Pets",
-  "Health & Beauty",
-];
-
-const sampleProducts = [
-  {
-    title: "Wireless Headphones",
-    price: 120,
-    images: [
-      {
-        url: "src/assets/car.png",
-        public_id: "headphones1"
-      }
-    ],
-    slug: "wireless-headphones",
-    createdAt: new Date(),
-    discount: 20,
-    colors: ["black", "white"]
-  },
-  {
-    title: "Smart Watch",
-    price: 250,
-    images: [
-      {
-        url: "src/assets/car.png",
-        public_id: "smartwatch1"
-      }
-    ],
-    slug: "smart-watch",
-    createdAt: new Date(),
-    discount: 15,
-    colors: ["silver", "black"]
-  },
-  {
-    title: "Gaming Mouse",
-    price: 60,
-    images: [
-      {
-        url: "src/assets/car.png",
-        public_id: "mouse1"
-      }
-    ],
-    slug: "gaming-mouse",
-    createdAt: new Date(),
-    colors: ["red", "blue"]
-  },
-  {
-    title: "Bluetooth Speaker",
-    price: 180,
-    images: [
-      {
-        url: "src/assets/car.png",
-        public_id: "speaker1"
-      }
-    ],
-    slug: "bluetooth-speaker",
-    createdAt: new Date(),
-    discount: 10
-  }
-];
-
+import { useEffect, useState } from "react";
 
 export default function ShopPage() {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          "https://apiexclusive.onrender.com/api/v1/products",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.status === "success") {
+          setProducts(data.data);
+        }
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
   return (
     <div className="shop-page">
-      {categories.map((category) => (
-        <section key={category} className="category-section2">
-          
-          <div className="category-header2">
-            
-            <div style={{display:"flex"}}>
-              <div className="red-block"></div>
-              <h2>{category}</h2>
-            </div>
-            <Link to={`/category/${category.replace(/\s+/g, "-").toLowerCase()}`} className="see-more">
-              <Button title="See All" />
-            </Link>
-          </div>
-<div className="products-grid2">
-  {sampleProducts.map((product, index) => (
-    <ProductCard key={index} product={product} />
-  ))}
-</div>
-
-        </section>
-      ))}
+      <section className="container">
+        <div className="row">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {products.length > 0 ? (
+                <>
+                  {products.map((product, index) => (
+                    <div className="col-lg-4 col-sm-2">
+                      <ProductCard key={index} product={product} />
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <div>Products not found</div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
