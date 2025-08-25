@@ -27,11 +27,34 @@ const cartSlice = createSlice({
   reducers: {
     // Add item
     addItem(state, action: PayloadAction<CartItem>) {
-      state.items.push(action.payload);
+      // Check if item is in cart
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      // Increase quantity
+      if (existingItem) existingItem.quantity = existingItem.quantity + 1;
+      // Add to cart
+      else state.items.push(action.payload);
     },
 
     // Add items
     addItems(state, action: PayloadAction<CartItem[]>) {
+      // loop through and find existing items
+      state.items.forEach((item) => {
+        const existingItem = action.payload.find((it) => it.id === item.id);
+        if (existingItem) {
+          // Increase quantity
+          item.quantity = item.quantity + 1;
+
+          // Remove from payload
+          action.payload = action.payload.filter(
+            (item) => item.id !== existingItem.id
+          );
+        }
+      });
+
+      // Add remaining items
       state.items = [...state.items, ...action.payload];
     },
 
