@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import "./Breadcrumb.css";
 
@@ -25,7 +24,9 @@ type BreadcrumbLocationState = {
 
 export default function Breadcrumb() {
   const location = useLocation();
-  const { pathname, state } = location as typeof location & { state?: BreadcrumbLocationState };
+  const { pathname, state } = location as typeof location & {
+    state?: BreadcrumbLocationState;
+  };
 
   if (!shouldShowBreadcrumb(pathname)) return null;
 
@@ -33,25 +34,43 @@ export default function Breadcrumb() {
   let items: CrumbItem[] = [{ label: "Home", path: "/" }];
 
   // Product Details: Home / Shop / Category / ProductName
-if (pathname.startsWith("/product/")) {
-  const categoryName = (state && state.categoryName) || "Category";
-  const productName = (state && state.productName) || humanize(pathname.split("/")[2] || "");
-  items = [
-    { label: "Home", path: "/" },
-    { label: "Shop", path: "/shop" },
-    { label: categoryName, path: `/category/${(state && state.categorySlug) || categoryName.toLowerCase()}` },
-    { label: productName } // current
-  ];
-}
-// Search: Home / Shop / [Query]
-else if (pathname.startsWith("/search")) {
-  const query = new URLSearchParams(location.search).get("q") || "Results";
-  items = [
-    { label: "Home", path: "/" },
-    { label: "Shop", path: "/shop" },
-    { label: query }
-  ];
-}
+  if (pathname.startsWith("/product/")) {
+    const categoryName = (state && state.categoryName) || "Category";
+    const productName =
+      (state && state.productName) || humanize(pathname.split("/")[2] || "");
+    items = [
+      { label: "Home", path: "/" },
+      { label: "Shop", path: "/shop" },
+      {
+        label: categoryName,
+        path: `/category/${
+          (state && state.categorySlug) || categoryName.toLowerCase()
+        }`,
+      },
+      { label: productName }, // current
+    ];
+  }
+  // Search: Home / Shop / [Query]
+  else if (pathname.startsWith("/search")) {
+    const query = new URLSearchParams(location.search).get("q") || "Results";
+    items = [
+      { label: "Home", path: "/" },
+      { label: "Shop", path: "/shop" },
+      { label: query },
+    ];
+  }
+
+  // Category
+  else if (pathname.startsWith("/category")) {
+    const categoryName = pathname.split("/").at(2)?.replaceAll("-", " ");
+    items = [
+      { label: "Home", path: "/" },
+      { label: "Category" },
+      {
+        label: `${categoryName?.at(0)?.toUpperCase()}${categoryName?.slice(1)}`,
+      },
+    ];
+  }
 
   // Checkout (Account / My Account / Product / View Cart / Checkout)
   else if (pathname === "/checkout") {
@@ -60,7 +79,7 @@ else if (pathname.startsWith("/search")) {
       { label: "My Account", path: "/account" },
       { label: "Product", path: "/product" },
       { label: "View Cart", path: "/cart" },
-      { label: "Checkout" }
+      { label: "Checkout" },
     ];
   }
   // Cart: Home / Cart
@@ -97,22 +116,22 @@ else if (pathname.startsWith("/search")) {
   return (
     <div className="container">
       <nav className="breadcrumb">
-      {items.map((it, i) => {
-        const isLast = i === items.length - 1;
-        return (
-          <span key={i} className="breadcrumb-item">
-            {!isLast && it.path ? (
-              <Link to={it.path} className="breadcrumb-link">
-                {it.label}
-              </Link>
-            ) : (
-              <span className="breadcrumb-current">{it.label}</span>
-            )}
-            {!isLast && <span className="breadcrumb-sep">/</span>}
-          </span>
-        );
-      })}
-    </nav>
+        {items.map((it, i) => {
+          const isLast = i === items.length - 1;
+          return (
+            <span key={i} className="breadcrumb-item">
+              {!isLast || it.path ? (
+                <Link to={it.path || pathname} className="breadcrumb-link">
+                  {it.label}
+                </Link>
+              ) : (
+                <span className="breadcrumb-current">{it.label}</span>
+              )}
+              {!isLast && <span className="breadcrumb-sep">/</span>}
+            </span>
+          );
+        })}
+      </nav>
     </div>
   );
 }

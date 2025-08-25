@@ -5,11 +5,21 @@ import "./Navbar.css";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
+import { totalCartItems } from "../../features/cart/cartSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Wishlist total
+  const wishListTotal = useSelector(totalWishlistItems);
+
+  // Cart total
+  const cartTotal = useSelector(totalCartItems);
+
+  // Handle search
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -66,9 +76,15 @@ export default function Navbar() {
             <div className="navbar-icons">
               <Link to="/wishlist">
                 <IoMdHeartEmpty size={28} />
+                {wishListTotal > 0 && (
+                  <span className="icon-total">{wishListTotal}</span>
+                )}
               </Link>
               <Link to="/cart">
                 <PiShoppingCartLight size={28} />
+                {cartTotal > 0 && (
+                  <span className="icon-total">{cartTotal}</span>
+                )}
               </Link>
               <Link to="/account">
                 <BiUser size={28} />

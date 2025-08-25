@@ -1,8 +1,37 @@
 import CategoryCard from "../../CategoryCard/CategoryCard";
 import ProductCard from "../../ProductCard/ProductCard";
+import { useEffect, useState } from "react";
 import "./BestSellingProducts.css";
 
 const BestSellingProducts = () => {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://apiexclusive.onrender.com/api/v1/products/best-selling",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.status === "success") setProducts(data.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <div className="best-selling">
       <CategoryCard
@@ -12,42 +41,23 @@ const BestSellingProducts = () => {
       />
       <div className="container">
         <div className="row product-row">
-          <div className="col-lg-4 col-sm-2">
-            <ProductCard
-              title="The north coat"
-              price={256.99}
-              image="/src/assets/car.jpg"
-              numberOfRatings={65}
-              rating={5}
-            />
-          </div>
-          <div className="col-lg-4 col-sm-2">
-            <ProductCard
-              title="Gucci duffle bag"
-              price={960}
-              image="/src/assets/car.jpg"
-              numberOfRatings={65}
-              rating={4}
-            />
-          </div>
-          <div className="col-lg-4 col-sm-2">
-            <ProductCard
-              title="RGB liquid CPU Cooler"
-              price={160}
-              image="/src/assets/car.jpg"
-              numberOfRatings={160}
-              rating={4}
-            />
-          </div>
-          <div className="col-lg-4 col-sm-2">
-            <ProductCard
-              title="Small BookSelf"
-              price={360}
-              image="/src/assets/car.jpg"
-              numberOfRatings={65}
-              rating={4}
-            />
-          </div>
+          {loading ? (
+            <div className="col-12">Loading...</div>
+          ) : (
+            <>
+              {products.length > 0 ? (
+                <>
+                  {products.map((product, i) => (
+                    <div className="col-lg-4 col-sm-2" key={i}>
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <div className="col-12">No products found.</div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
