@@ -74,6 +74,7 @@ export default function Navbar() {
               <PiMagnifyingGlass className="bs" size={24} />
             </form>
             <div className="navbar-icons">
+            <div className="navbar-icons">
               <Link to="/wishlist">
                 <IoMdHeartEmpty size={28} />
                 {wishListTotal > 0 && (
