@@ -39,7 +39,7 @@ export default function Category() {
       <section className="container">
         <div className="row">
           {loading ? (
-            <div>Loading...</div>
+            <div className="col-12">Loading...</div>
           ) : (
             <>
               {products.length > 0 ? (
@@ -51,7 +51,7 @@ export default function Category() {
                   ))}
                 </>
               ) : (
-                <div>No products found in this category</div>
+                <div className="col-12">No products found in this category</div>
               )}
             </>
           )}

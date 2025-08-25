@@ -1,7 +1,7 @@
-
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
 
 interface SignupResponse {
   status: string;
@@ -88,7 +88,6 @@ const Signup: React.FC = () => {
     }
   };
 
-
   return (
     <div className="signup-page">
       {/* Left image section */}
@@ -102,20 +101,16 @@ const Signup: React.FC = () => {
           <h2 className="signup-title">Create an account</h2>
           <p className="signup-subtitle">Enter your details below</p>
 
-
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
 
           <form className="signup-form" onSubmit={handleSubmit}>
-
             <input
               type="text"
               placeholder="Name"
               className="signup-input"
-
               value={name}
               onChange={(e) => setName(e.target.value)}
-
               required
             />
             <input
@@ -132,17 +127,14 @@ const Signup: React.FC = () => {
               className="signup-input"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-
               required
             />
             <input
               type="password"
               placeholder="Password"
               className="signup-input"
-
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-
               required
             />
 
@@ -165,9 +157,9 @@ const Signup: React.FC = () => {
 
           <div className="signup-footer">
             Already have an account?{" "}
-            <a href="/login" className="signup-login-link">
+            <Link to="/login" className="signup-login-link">
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </div>
