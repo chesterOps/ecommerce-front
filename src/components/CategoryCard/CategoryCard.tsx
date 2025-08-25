@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import "./CategoryCard.css";
 import { useEffect, useState } from "react";
@@ -24,6 +25,8 @@ export default function CategoryCard({
     minutes: 19,
     seconds: 56,
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!showCounter) return;
@@ -88,7 +91,9 @@ export default function CategoryCard({
               </div>
             )}
           </div>
-          {showButton && <Button title="See All" />}
+          {showButton && (
+            <Button title="See All" onClick={() => navigate("/shop")} />
+          )}
           {controls && controls}
         </div>
       </div>

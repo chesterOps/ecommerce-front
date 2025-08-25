@@ -23,11 +23,13 @@
   border: 1.5px solid black;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .wishlist-btn:hover {
-  background-color: #b63636;
+  background-color: #db4444;
+  color: #fff;
+  border-color: #db4444;
 }
 
 .wishlist-list,

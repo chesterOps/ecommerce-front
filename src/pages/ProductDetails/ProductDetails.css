@@ -280,7 +280,7 @@
   transition: all 0.2s ease;
 }
 
-.wishlist-btn:hover {
+.product-page .wishlist-btn:hover {
   border-color: #db4444;
   color: #db4444;
 }

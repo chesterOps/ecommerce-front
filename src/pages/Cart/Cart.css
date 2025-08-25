@@ -84,6 +84,13 @@
   font-weight: 500;
 }
 
+.return-btn:hover,
+.update-btn:hover {
+  border-color: #db4444;
+  background-color: #db4444;
+  color: #fff;
+}
+
 .cart-bottom {
   display: flex;
   justify-content: space-between;
@@ -193,7 +200,6 @@
     flex-direction: column;
     gap: 30px;
   }
-
 }
 
 /* Mobile adjustments */

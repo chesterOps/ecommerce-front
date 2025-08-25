@@ -1,8 +1,9 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useEffect, useState } from "react";
-import "./Shop.css";
+import { useParams } from "react-router-dom";
 
-export default function ShopPage() {
+export default function Category() {
+  const params = useParams<{ category: string }>();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
@@ -11,7 +12,7 @@ export default function ShopPage() {
       setLoading(true);
       try {
         const response = await fetch(
-          "https://apiexclusive.onrender.com/api/v1/products",
+          `https://apiexclusive.onrender.com/api/v1/products/category/${params.category}`,
           {
             method: "GET",
             headers: {
@@ -32,7 +33,7 @@ export default function ShopPage() {
       }
     };
     fetchProducts();
-  }, []);
+  }, [params.category]);
   return (
     <div className="shop-page">
       <section className="container">
@@ -50,7 +51,7 @@ export default function ShopPage() {
                   ))}
                 </>
               ) : (
-                <div>Products not found</div>
+                <div>No products found in this category</div>
               )}
             </>
           )}

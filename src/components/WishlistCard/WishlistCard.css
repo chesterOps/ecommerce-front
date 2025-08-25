@@ -18,6 +18,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 /* Badges */
@@ -90,12 +91,16 @@
   margin-left: 7px;
 }
 
-
 /* Info Section */
 .wishlist-card-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.wishlist-card-info a {
+  color: #000;
+  text-decoration: none;
 }
 
 .wishlist-card .ratings {

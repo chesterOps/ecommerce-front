@@ -13,11 +13,12 @@ import Signup from "./pages/Signup/Signup";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import NotFound from "./pages/404Page/404Page";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import Search from "./pages/Search/search";
 import Order from "./pages/Orders/Order";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Category from "./pages/Category/Category";
+import Search from "./pages/Search/search";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop/:slug" element={<ProductDetails />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
@@ -37,7 +39,6 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/search" element={<Search />} />
           <Route path="/track-order/:orderId" element={<TrackOrder />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/orders" element={<Order />} />

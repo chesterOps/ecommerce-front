@@ -1,77 +1,139 @@
 import React from "react";
-import "./WishlistCard.css";
 import { IoCartOutline, IoTrashOutline } from "react-icons/io5";
 import { FiEye } from "react-icons/fi";
-import { AiFillStar } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+//import { AiFillStar } from "react-icons/ai";
+import { removeFromWishlist } from "../../features/wishlist/wishlistSlice";
+import { Link, useNavigate } from "react-router-dom";
+import "./WishlistCard.css";
+import { addItem } from "../../features/cart/cartSlice";
 
 interface WishlistCardProps {
-  image: string;
-  title: string;
-  price: string;
-  oldPrice?: string;
-  discount?: string;
-  isNew?: boolean;
+  product: {
+    title: string;
+    id: string;
+    price: number;
+    image: string;
+    discount?: number;
+    slug: string;
+    rating?: {
+      value: number;
+      length: number;
+    };
+    createdAt: Date;
+  };
   showDelete?: boolean;
   showView?: boolean;
-  rating?: number;
-  numberOfRatings?: number;
 }
 
 const WishlistCard: React.FC<WishlistCardProps> = ({
-  image,
-  title,
-  price,
-  oldPrice,
-  discount,
-  isNew,
+  product,
   showDelete,
   showView,
-  rating,
-  numberOfRatings
 }) => {
+  // Dispatch hook
+  const dispatch = useDispatch();
+
+  // Navigate hook
+  const navigate = useNavigate();
+
+  // Calculate price
+  const price = product.discount
+    ? Number(
+        (product.price - product.price * product.discount * 0.01).toFixed(2)
+      )
+    : Number(product.price.toFixed(2));
+
+  // Handle add to bag
+  const handleAddToBag = () => {
+    // Add to cart
+    dispatch(
+      addItem({
+        title: product.title,
+        price,
+        image: product.image,
+        quantity: 1,
+        id: product.id,
+      })
+    );
+
+    // Remove from wishlist
+    dispatch(removeFromWishlist(product.id));
+  };
+
+  // Check if product is new
+  const isNew =
+    new Date(product.createdAt) >=
+    new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
   return (
     <div className="wishlist-card">
       <div className="wishlist-card-img">
-        {discount && <span className="wishlist-badge discount">{discount}</span>}
+        {product.discount && (
+          <span className="wishlist-badge discount">-{product.discount}%</span>
+        )}
         {isNew && <span className="wishlist-badge new">NEW</span>}
         <div className="wishlist-card-actions">
           {showDelete && (
-            <button className="wishlist-icon-btn">
+            <button
+              className="wishlist-icon-btn"
+              onClick={() => dispatch(removeFromWishlist(product.id))}
+            >
               <IoTrashOutline size={18} />
             </button>
           )}
           {showView && (
-            <button className="wishlist-icon-btn">
+            <button
+              className="wishlist-icon-btn"
+              onClick={() => navigate(`/shop/${product.slug}`)}
+            >
               <FiEye size={18} />
             </button>
           )}
         </div>
-        <img src={image} alt={title} />
-         <button className="wishlist-add-btn">
-        <IoCartOutline  size={20} /> <span>Add To Cart</span>
-      </button>
+        <img
+          src={product.image}
+          alt={product.title}
+          onClick={() => navigate(`/shop/${product.slug}`)}
+        />
+        <button className="wishlist-add-btn" onClick={handleAddToBag}>
+          <IoCartOutline size={20} /> <span>Add To Cart</span>
+        </button>
       </div>
-
       <div className="wishlist-card-info">
-        <p className="wishlist-card-title">{title}</p>
+        <Link to={`/shop/${product.slug}`}>
+          <p className="wishlist-card-title">{product.title}</p>
+        </Link>
         <div className="wishlist-price">
-          <span className="price">{price}</span>
-          {oldPrice && <span className="old-price">{oldPrice}</span>}
+          {product.discount ? (
+            <>
+              <span className="price">
+                $
+                {(
+                  product.price -
+                  product.price * product.discount * 0.01
+                ).toFixed(2)}
+              </span>
+
+              <span className="old-price">${product.price.toFixed(2)}</span>
+            </>
+          ) : (
+            <span className="price">${product.price.toFixed(2)}</span>
+          )}
         </div>
       </div>
 
-       {rating && (
-                  <div className="ratings">
-                    {Array.from({ length: 5 }).map((_, i) =>
-                      i < rating ? (
-                        <AiFillStar size={20} key={i} className="star gold" />
-                      ) : (
-                        <AiFillStar size={20} key={i} className="star grey" />
-                      )
-                    )}
-                    <span className="no-of-ratings">({numberOfRatings})</span>
-                  </div>
-                )}
+      {/* {product.rating && (
+            <div className="ratings">
+              {Array.from({ length: 5 }).map((_, i) =>
+                i < product.rating ? (
+                  <AiFillStar size={20} key={i} className="star gold" />
+                ) : (
+                  <AiFillStar size={20} key={i} className="star grey" />
+                )
+              )}
+              <span className="no-of-ratings">({numberOfRatings})</span>
+            </div>
+          )} */}
     </div>
   );
 };
