@@ -1,6 +1,15 @@
 import React, { type FormEvent } from "react";
+import React, { type FormEvent } from "react";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  deleteItem,
+  getCartItems,
+  totalCartPrice,
+  updateCart,
+} from "../../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   deleteItem,
@@ -19,11 +28,36 @@ const Cart: React.FC = () => {
 
   // Cart total
   const cartTotal = useSelector(totalCartPrice);
+  // Cart items
+  const items = useSelector(getCartItems);
+
+  // Dispatch hook
+  const dispatch = useDispatch();
+
+  // Cart total
+  const cartTotal = useSelector(totalCartPrice);
 
   const applyCoupon = () => {
     alert("Coupon applied! (demo only)");
   };
 
+  const setCart = (e: FormEvent<HTMLFormElement>) => {
+    // Prevent default submit
+    e.preventDefault();
+
+    // Get values from cart
+    const formData = new FormData(e.currentTarget);
+
+    const data = Object.fromEntries(formData.entries());
+
+    // Make new cart
+    const newItems = items.map((item) => {
+      if (data[item.id]) return { ...item, quantity: Number(data[item.id]) };
+      else return item;
+    });
+
+    // Update cart
+    dispatch(updateCart(newItems));
   const setCart = (e: FormEvent<HTMLFormElement>) => {
     // Prevent default submit
     e.preventDefault();
@@ -137,6 +171,7 @@ const Cart: React.FC = () => {
           </>
         )}
       </div>
+    </div>
     </div>
   );
 };

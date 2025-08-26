@@ -8,6 +8,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
 import { totalCartItems } from "../../features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
+import { totalCartItems } from "../../features/cart/cartSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -88,9 +91,15 @@ export default function Navbar() {
                 {wishListTotal > 0 && (
                   <span className="icon-total">{wishListTotal}</span>
                 )}
+                {wishListTotal > 0 && (
+                  <span className="icon-total">{wishListTotal}</span>
+                )}
               </Link>
               <Link to="/cart">
                 <PiShoppingCartLight size={28} />
+                {cartTotal > 0 && (
+                  <span className="icon-total">{cartTotal}</span>
+                )}
                 {cartTotal > 0 && (
                   <span className="icon-total">{cartTotal}</span>
                 )}
