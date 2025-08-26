@@ -16,9 +16,9 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Order from "./pages/Orders/Order";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Category from "./pages/Category/Category";
 import Search from "./pages/Search/search";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
@@ -42,7 +42,7 @@ export default function App() {
           <Route path="/track-order/:orderId" element={<TrackOrder />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/orders" element={<Order />} />
-          <Route path="/search/:query" element={<Search />} />
+          <Route path="/search" element={<Search />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

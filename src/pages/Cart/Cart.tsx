@@ -103,37 +103,39 @@ const Cart: React.FC = () => {
             </button>
           )}
         </div>
-
-        {/* Coupon + Cart Total */}
-        <div className="cart-bottom">
-          <div className="coupon-section">
-            <input type="text" placeholder="Coupon Code" />
-            <button className="apply-btn" onClick={applyCoupon}>
-              Apply Coupon
-            </button>
-          </div>
-          {cartTotal > 0 && (
-            <div className="cart-total">
-              <h3>Cart Total</h3>
-              <div className="total-row">
-                <span>Subtotal:</span>
-                <span>${cartTotal.toFixed(2)}</span>
-              </div>
-              <div className="total-row" id="shipping1">
-                <span>Shipping:</span>
-                <span>Free</span>
-              </div>
-              <div className="total-row total">
-                <span>Total:</span>
-                <span>${cartTotal.toFixed(2)}</span>
+        {cartTotal > 0 && (
+          <>
+            {/* Coupon + Cart Total */}
+            <div className="cart-bottom">
+              <div className="coupon-section">
+                <input type="text" placeholder="Coupon Code" />
+                <button className="apply-btn" onClick={applyCoupon}>
+                  Apply Coupon
+                </button>
               </div>
 
-              <Link to="/checkout">
-                <button className="checkout-btn">Proceed to checkout</button>
-              </Link>
+              <div className="cart-total">
+                <h3>Cart Total</h3>
+                <div className="total-row">
+                  <span>Subtotal:</span>
+                  <span>${cartTotal.toFixed(2)}</span>
+                </div>
+                <div className="total-row" id="shipping1">
+                  <span>Shipping:</span>
+                  <span>Free</span>
+                </div>
+                <div className="total-row total">
+                  <span>Total:</span>
+                  <span>${cartTotal.toFixed(2)}</span>
+                </div>
+
+                <Link to="/checkout">
+                  <button className="checkout-btn">Proceed to checkout</button>
+                </Link>
+              </div>
             </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
