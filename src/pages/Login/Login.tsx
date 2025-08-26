@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/auth/userSlice";
 
 const Login = () => {
-  const [identifier, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,30 +25,22 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify({ identifier, password }),
         }
       );
 
       const data = await response.json();
-      console.log("📩 Raw API response:", data);
 
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
 
-      // Adjust token extraction depending on the API shape
-      const token =
-        data.token || data.data?.token || data.accessToken || null;
+      // Set user
+      dispatch(setUser(data.data));
 
-      if (!token) {
-        throw new Error("Token not found in response");
-      }
-
-      // Save token to localStorage
-      localStorage.setItem("token", token);
-
-      // Redirect to home or dashboard
-      window.location.href = "/";
+      // Navigate to home page
+      navigate("/");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -67,11 +63,11 @@ const Login = () => {
           <p className="login-subtitle">Enter your details below</p>
           <form className="login-form" onSubmit={handleSubmit}>
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Email or phonenumber"
               className="login-input"
               value={identifier}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setIdentifier(e.target.value)}
               required
             />
             <input
@@ -83,14 +79,11 @@ const Login = () => {
               required
             />
 
-            {error && (
-              <p style={{ color: "red", fontSize: "14px" }}>{error}</p>
-            )}
+            {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
             <div className="login-actions">
               <button type="submit" className="login-btn" disabled={loading}>
                 {loading ? "Logging in..." : "Log In"}
-
               </button>
               <Link to="/forgot-password" className="login-forgot">
                 Forget Password?

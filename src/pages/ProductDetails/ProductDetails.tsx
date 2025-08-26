@@ -7,6 +7,7 @@ import "./ProductDetails.css";
 //import { CiHeart } from "react-icons/ci";
 //import { IoEyeOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 interface IProduct {
   id: string;
@@ -24,7 +25,9 @@ interface IProduct {
 const ProductDetails: React.FC = () => {
   const params = useParams<{ slug: string }>();
   const [loading, setLoading] = useState(true);
+  const [pending, setPending] = useState(true);
   const [product, setProduct] = useState<IProduct | undefined>(undefined);
+  const [relatedProducts, setRelatedProduct] = useState([]);
   const [selectedImage, setSelectedImage] = useState<number>(0);
   const [selectedColor, setSelectedColor] = useState<string>("blue");
   const [selectedSize, setSelectedSize] = useState<string>("M");
@@ -59,13 +62,42 @@ const ProductDetails: React.FC = () => {
         setLoading(false);
       }
     };
+
+    const getRelatedProducts = async () => {
+      setPending(true);
+      try {
+        const response = await fetch(
+          `https://apiexclusive.onrender.com/api/v1/products/related/${params.slug}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.status === "success") {
+          setRelatedProduct(data.data);
+        }
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setPending(false);
+      }
+    };
+
     getProductDetails();
+    getRelatedProducts();
   }, [params.slug]);
 
   return (
     <div className="product-page">
       {loading ? (
-        <div>Loading....</div>
+        <div className="container">
+          <div className="row">Loading....</div>
+        </div>
       ) : (
         <>
           {product ? (
@@ -200,47 +232,31 @@ const ProductDetails: React.FC = () => {
         </>
       )}
 
-      {/* <div className="related-container">
+      <div className="related-container container">
         <div className="block-cn">
           <div className="block-it"></div>
           <h3 className="related-title">Related Item</h3>
         </div>
-
-        <div className="product-list">
-          {product.map((item, index) => (
-            <div key={index} className="game-card">
-              <div className="image-box">
-                <span className="discount">{item.discount}</span>
-
-                <img src={item.image} alt={item.name} />
-
-                <div className="icons">
-                  <CiHeart className="heart-icon" />
-                  <IoEyeOutline className="eye-icon" />
-                </div>
-              </div>
-
-              <div className="game-info">
-                <h4 className="product-name">{item.name}</h4>
-
-                <div className="price">
-                  <span className="new-price">${item.price}</span>
-                  <span className="old-price">${item.oldPrice}</span>
-                </div>
-
-                <div className="rating">
-                  {Array.from({ length: 5 }, (_, i) =>
-                    i < item.rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-                  )}
-                  <span className="reviews">({item.reviews})</span>
-                </div>
-              </div>
-
-              <button className="cart-btn">Add To Cart</button>
-            </div>
-          ))}
+        <div className="row">
+          {pending ? (
+            <div className="col-12">Loading</div>
+          ) : (
+            <>
+              {relatedProducts.length > 0 ? (
+                <>
+                  {relatedProducts.map((item, index) => (
+                    <div className="col-lg-4 col-sm-2" key={index}>
+                      <ProductCard product={item} />
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <div>No products found</div>
+              )}
+            </>
+          )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -13,6 +13,8 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [open, setOpen] = useState(false);
+
   // Wishlist total
   const wishListTotal = useSelector(totalWishlistItems);
 
@@ -71,11 +73,21 @@ export default function Navbar() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <PiMagnifyingGlass className="bs" size={24} />
+              <PiMagnifyingGlass
+                className="bs"
+                size={24}
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={handleSearch}
+              />
             </form>
             <div className="navbar-icons">
               <Link to="/wishlist">
                 <IoMdHeartEmpty size={28} />
+                {wishListTotal > 0 && (
+                  <span className="icon-total">{wishListTotal}</span>
+                )}
                 {wishListTotal > 0 && (
                   <span className="icon-total">{wishListTotal}</span>
                 )}
@@ -85,10 +97,17 @@ export default function Navbar() {
                 {cartTotal > 0 && (
                   <span className="icon-total">{cartTotal}</span>
                 )}
+                {cartTotal > 0 && (
+                  <span className="icon-total">{cartTotal}</span>
+                )}
               </Link>
-              <Link to="/account">
+              <button
+                className="account-menu"
+                onClick={() => setOpen((s) => !s)}
+              >
                 <BiUser size={28} />
-              </Link>
+                {open && <ul>Menu</ul>}
+              </button>
             </div>
           </div>
         </div>

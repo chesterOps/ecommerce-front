@@ -72,7 +72,7 @@ const Cart: React.FC = () => {
                     />
                     <span className="cart-product-name">{item.title}</span>
                   </div>
-                  <span className="cart-price">${item.price.toFixed(2)}</span>
+                  <span className="cart-price">${item.price}</span>
                   <div className="cart-counter">
                     <input
                       type="number"

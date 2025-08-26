@@ -78,7 +78,7 @@
   width: 100%;
 }
 
-.product-page .product-title {
+.product-container .product-title {
   font-size: 24px;
   font-weight: 600;
   color: #000000;
@@ -326,31 +326,28 @@
 }
 
 .related-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Poppins", sans-serif;
-  margin-top: 80px;
+  margin-top: 140px !important;
 }
 
 .related-title {
   color: #db4444;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .block-cn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-left: 3rem;
+  gap: 16px;
+  margin-bottom: 60px;
 }
 
 .block-it {
   width: 20px;
-  height: 30px;
+  height: 50px;
   background-color: #db4444;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .product-list {
