@@ -8,9 +8,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
 import { totalCartItems } from "../../features/cart/cartSlice";
-import { useSelector } from "react-redux";
-import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
-import { totalCartItems } from "../../features/cart/cartSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();

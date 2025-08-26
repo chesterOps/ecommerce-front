@@ -1,15 +1,6 @@
 import React, { type FormEvent } from "react";
-import React, { type FormEvent } from "react";
 import "./Cart.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {
-  deleteItem,
-  getCartItems,
-  totalCartPrice,
-  updateCart,
-} from "../../features/cart/cartSlice";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   deleteItem,
@@ -28,36 +19,11 @@ const Cart: React.FC = () => {
 
   // Cart total
   const cartTotal = useSelector(totalCartPrice);
-  // Cart items
-  const items = useSelector(getCartItems);
-
-  // Dispatch hook
-  const dispatch = useDispatch();
-
-  // Cart total
-  const cartTotal = useSelector(totalCartPrice);
 
   const applyCoupon = () => {
     alert("Coupon applied! (demo only)");
   };
 
-  const setCart = (e: FormEvent<HTMLFormElement>) => {
-    // Prevent default submit
-    e.preventDefault();
-
-    // Get values from cart
-    const formData = new FormData(e.currentTarget);
-
-    const data = Object.fromEntries(formData.entries());
-
-    // Make new cart
-    const newItems = items.map((item) => {
-      if (data[item.id]) return { ...item, quantity: Number(data[item.id]) };
-      else return item;
-    });
-
-    // Update cart
-    dispatch(updateCart(newItems));
   const setCart = (e: FormEvent<HTMLFormElement>) => {
     // Prevent default submit
     e.preventDefault();
@@ -106,7 +72,7 @@ const Cart: React.FC = () => {
                     />
                     <span className="cart-product-name">{item.title}</span>
                   </div>
-                  <span className="cart-price">${item.price.toFixed(2)}</span>
+                  <span className="cart-price">${item.price}</span>
                   <div className="cart-counter">
                     <input
                       type="number"
@@ -137,41 +103,38 @@ const Cart: React.FC = () => {
             </button>
           )}
         </div>
-        {cartTotal > 0 && (
-          <>
-            {/* Coupon + Cart Total */}
-            <div className="cart-bottom">
-              <div className="coupon-section">
-                <input type="text" placeholder="Coupon Code" />
-                <button className="apply-btn" onClick={applyCoupon}>
-                  Apply Coupon
-                </button>
+
+        {/* Coupon + Cart Total */}
+        <div className="cart-bottom">
+          <div className="coupon-section">
+            <input type="text" placeholder="Coupon Code" />
+            <button className="apply-btn" onClick={applyCoupon}>
+              Apply Coupon
+            </button>
+          </div>
+          {cartTotal > 0 && (
+            <div className="cart-total">
+              <h3>Cart Total</h3>
+              <div className="total-row">
+                <span>Subtotal:</span>
+                <span>${cartTotal.toFixed(2)}</span>
+              </div>
+              <div className="total-row" id="shipping1">
+                <span>Shipping:</span>
+                <span>Free</span>
+              </div>
+              <div className="total-row total">
+                <span>Total:</span>
+                <span>${cartTotal.toFixed(2)}</span>
               </div>
 
-              <div className="cart-total">
-                <h3>Cart Total</h3>
-                <div className="total-row">
-                  <span>Subtotal:</span>
-                  <span>${cartTotal.toFixed(2)}</span>
-                </div>
-                <div className="total-row" id="shipping1">
-                  <span>Shipping:</span>
-                  <span>Free</span>
-                </div>
-                <div className="total-row total">
-                  <span>Total:</span>
-                  <span>${cartTotal.toFixed(2)}</span>
-                </div>
-
-                <Link to="/checkout">
-                  <button className="checkout-btn">Proceed to checkout</button>
-                </Link>
-              </div>
+              <Link to="/checkout">
+                <button className="checkout-btn">Proceed to checkout</button>
+              </Link>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
