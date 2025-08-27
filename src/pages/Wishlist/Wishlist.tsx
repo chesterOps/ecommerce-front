@@ -37,41 +37,41 @@ export default function Wishlist() {
     dispatch(clearWishlist());
   };
 
-  const recommended = [
-    {
-      title: "Small BookShelf",
-      price: "$360",
-      image: "/src/assets/car.jpg",
-      rating: 5,
-      numberOfRatings: 12,
-      showView: true,
-    },
-    {
-      title: "iPhone 14 Pro",
-      price: "$999",
-      image: "/src/assets/car.jpg",
-      rating: 5,
-      numberOfRatings: 320,
-      showView: true,
-    },
-    {
-      title: "Small BookShelf",
-      price: "$360",
-      image: "/src/assets/car.jpg",
-      rating: 5,
-      numberOfRatings: 12,
-      showView: true,
-      isNew: true,
-    },
-    {
-      title: "Small BookShelf",
-      price: "$360",
-      image: "/src/assets/car.jpg",
-      rating: 5,
-      numberOfRatings: 12,
-      showView: true,
-    },
-  ];
+  // const recommended = [
+  //   {
+  //     title: "Small BookShelf",
+  //     price: "$360",
+  //     image: "/src/assets/car.jpg",
+  //     rating: 5,
+  //     numberOfRatings: 12,
+  //     showView: true,
+  //   },
+  //   {
+  //     title: "iPhone 14 Pro",
+  //     price: "$999",
+  //     image: "/src/assets/car.jpg",
+  //     rating: 5,
+  //     numberOfRatings: 320,
+  //     showView: true,
+  //   },
+  //   {
+  //     title: "Small BookShelf",
+  //     price: "$360",
+  //     image: "/src/assets/car.jpg",
+  //     rating: 5,
+  //     numberOfRatings: 12,
+  //     showView: true,
+  //     isNew: true,
+  //   },
+  //   {
+  //     title: "Small BookShelf",
+  //     price: "$360",
+  //     image: "/src/assets/car.jpg",
+  //     rating: 5,
+  //     numberOfRatings: 12,
+  //     showView: true,
+  //   },
+  // ];
 
   return (
     <div className="container">
