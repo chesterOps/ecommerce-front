@@ -19,7 +19,7 @@ import Shop from "./pages/Shop/Shop";
 import Category from "./pages/Category/Category";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Search from "./pages/Search/Search";
+import SearchPage from "./pages/Search/SearchPage";
 
 export default function App() {
   return (
@@ -44,7 +44,7 @@ export default function App() {
           <Route path="/track-order/:orderId" element={<TrackOrder />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/orders" element={<Order />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

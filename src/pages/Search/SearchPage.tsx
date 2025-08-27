@@ -1,7 +1,7 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./search.css";
+import "./Search.css";
 
 interface Product {
   title: string;
