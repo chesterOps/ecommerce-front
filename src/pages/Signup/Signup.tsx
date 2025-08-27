@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import type { FormEvent } from "react";
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/auth/userSlice";
 
 interface SignupResponse {
   status: string;
   message: string;
   token?: string;
+  data: {
+    name: string;
+    email: string;
+    role: string;
+    phone: string;
+    _id: string;
+  };
 }
 
 interface GoogleAuthResponse {
@@ -23,12 +31,14 @@ const Signup: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(null);
 
     try {
       const response = await fetch(
@@ -41,7 +51,7 @@ const Signup: React.FC = () => {
           body: JSON.stringify({
             name,
             email,
-            phoneNumber,
+            phone: phoneNumber,
             password,
           }),
         }
@@ -49,13 +59,26 @@ const Signup: React.FC = () => {
 
       const data: SignupResponse = await response.json();
 
-      if (response.ok) {
-        setSuccess(data.message || "Account created successfully!");
-      } else {
-        setError(data.message || "Signup failed. Please try again.");
+      if (!response.ok) {
+        throw new Error(data.message);
       }
-    } catch {
-      setError("An error occurred. Please check your connection.");
+
+      // Set success message
+      setSuccess(data.message);
+
+      // Set user
+      dispatch(setUser(data.data));
+
+      // Navigate to home
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -64,7 +87,6 @@ const Signup: React.FC = () => {
   const handleGoogleAuth = async () => {
     setLoading(true);
     setError(null);
-    setSuccess(null);
 
     try {
       const response = await fetch(
@@ -122,7 +144,7 @@ const Signup: React.FC = () => {
               required
             />
             <input
-              type="number"
+              type="text"
               placeholder="Phone Number"
               className="signup-input"
               value={phoneNumber}
@@ -147,7 +169,7 @@ const Signup: React.FC = () => {
               disabled={loading}
             >
               <img src="src/assets/Icon-Google.svg" alt="Google" />
-              Sign in with Google
+              Sign up with Google
             </button>
             {/* Create Account Button */}
             <button type="submit" className="signup-btn" disabled={loading}>

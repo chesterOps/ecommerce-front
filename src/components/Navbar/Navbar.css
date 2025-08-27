@@ -133,6 +133,58 @@
   background-color: #db4444;
 }
 
+.account-box {
+  position: relative;
+}
+
+.account-menu {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.account-nav {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  list-style: none;
+  min-width: 225px;
+  padding: 18px 12px 10px 20px;
+  border-radius: 4px;
+  z-index: 10;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+}
+
+.account-nav li a,
+.logout-btn {
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-nav li a:hover,
+.logout-btn:hover {
+  text-decoration: underline;
+}
+
+.logout-btn {
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .top-announcement {
     display: block;
