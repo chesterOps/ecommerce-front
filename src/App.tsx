@@ -17,9 +17,9 @@ import Order from "./pages/Orders/Order";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
 import Category from "./pages/Category/Category";
-import Search from "./pages/Search/Search";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Search from "./pages/Search/Search";
 
 export default function App() {
   return (
