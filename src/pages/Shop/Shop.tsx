@@ -44,8 +44,8 @@ export default function ShopPage() {
               {products.length > 0 ? (
                 <>
                   {products.map((product, index) => (
-                    <div className="col-lg-4 col-sm-2">
-                      <ProductCard key={index} product={product} />
+                    <div className="col-lg-4 col-sm-2" key={index}>
+                      <ProductCard product={product} />
                     </div>
                   ))}
                 </>

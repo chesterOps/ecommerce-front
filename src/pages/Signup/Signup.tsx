@@ -3,11 +3,12 @@ import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/auth/userSlice";
+import { useGoogleLogin } from "@react-oauth/google";
 
 interface SignupResponse {
   status: string;
   message: string;
-  token?: string;
+  token: string;
   data: {
     name: string;
     email: string;
@@ -15,12 +16,6 @@ interface SignupResponse {
     phone: string;
     _id: string;
   };
-}
-
-interface GoogleAuthResponse {
-  status: string;
-  message: string;
-  token?: string;
 }
 
 const Signup: React.FC = () => {
@@ -84,37 +79,57 @@ const Signup: React.FC = () => {
     }
   };
 
-  const handleGoogleAuth = async () => {
-    setLoading(true);
+  const handleGoogleAuth = async (token: string) => {
     setError(null);
 
     try {
       const response = await fetch(
         "https://apiexclusive.onrender.com/api/v1/auth/google-auth",
         {
-          method: "GET", // Assuming it's a GET request; if it's POST, change accordingly
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+          credentials: "include",
         }
       );
 
-      const data: GoogleAuthResponse = await response.json();
+      const data: SignupResponse = await response.json();
 
-      if (response.ok) {
-        setSuccess(data.message || "Google authentication successful!");
-      } else {
-        setError(data.message || "Google authentication failed.");
+      if (!response.ok) {
+        throw new Error(data.message);
       }
-    } catch {
-      setError("An error occurred during Google authentication.");
-    } finally {
-      setLoading(false);
+
+      // Set success message
+      setSuccess(data.message);
+
+      // Set user
+      dispatch(setUser(data.data));
+
+      // Navigate to home
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => handleGoogleAuth(tokenResponse.access_token),
+    onError: () => setError("Login failed"),
+  });
 
   return (
     <div className="signup-page">
       {/* Left image section */}
       <div className="signup-image">
-        <img src="/src/assets/SideImage.png" alt="Signup" />
+        <img src="/sideimage.png" alt="Signup" />
       </div>
 
       {/* Right form section */}
@@ -160,17 +175,15 @@ const Signup: React.FC = () => {
               required
             />
 
-            {/* Google Sign-in Button */}
-
             <button
               type="button"
               className="signup-google-btn"
-              onClick={handleGoogleAuth}
-              disabled={loading}
+              onClick={() => googleLogin()}
             >
-              <img src="src/assets/Icon-Google.svg" alt="Google" />
+              <img src="icon-google.svg" alt="Google" />
               Sign up with Google
             </button>
+
             {/* Create Account Button */}
             <button type="submit" className="signup-btn" disabled={loading}>
               {loading ? "Please wait..." : "Create Account"}

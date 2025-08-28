@@ -66,7 +66,6 @@ export default function Footer() {
           <div className="footer__col col-lg-5 col-md-3 col-sm-2">
             <h4>Quick Link</h4>
             <ul>
-
               <li>
                 <Link to="#">Privacy Policy</Link>
               </li>
@@ -79,8 +78,6 @@ export default function Footer() {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-
-              
             </ul>
           </div>
 
@@ -88,7 +85,7 @@ export default function Footer() {
             <h4>Download App</h4>
             <p className="save-app">Save $3 with App New User Only</p>
             <div className="qr-codes">
-              <img src="/src/assets/footerimg.png" alt="Download App" />
+              <img src="/qrcode.png" alt="Download App" />
             </div>
             <div className="socials">
               <Link target="_blank" to="https://www.facebook.com">

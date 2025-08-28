@@ -50,6 +50,7 @@ export default function Navbar() {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
         }
       );
 

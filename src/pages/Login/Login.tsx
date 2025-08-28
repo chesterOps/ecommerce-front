@@ -55,7 +55,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-image">
-        <img src="/src/assets/SideImage.png" alt="Shopping Illustration" />
+        <img src="/sideimage.png" alt="Shopping Illustration" />
       </div>
       <div className="login-form-section">
         <div className="login-form-wrapper">
@@ -86,7 +86,7 @@ const Login = () => {
                 {loading ? "Logging in..." : "Log In"}
               </button>
               <Link to="/forgot-password" className="login-forgot">
-                Forget Password?
+                Forgot Password?
               </Link>
             </div>
           </form>

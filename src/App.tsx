@@ -20,6 +20,7 @@ import Category from "./pages/Category/Category";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchPage from "./pages/Search/SearchPage";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/shop/:slug" element={<ProductDetails />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/cart" element={<Cart />} />

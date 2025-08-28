@@ -72,12 +72,16 @@ export default function Breadcrumb() {
     ];
   }
 
+  // About: Home / Reset password
+  else if (pathname.startsWith("/reset-password")) {
+    items = [{ label: "Home", path: "/" }, { label: "Reset password" }];
+  }
+
   // Checkout (Account / My Account / Product / View Cart / Checkout)
   else if (pathname === "/checkout") {
     items = [
+      { label: "Home", path: "/" },
       { label: "Account", path: "/account" },
-      { label: "My Account", path: "/account" },
-      { label: "Product", path: "/product" },
       { label: "View Cart", path: "/cart" },
       { label: "Checkout" },
     ];
@@ -94,6 +98,7 @@ export default function Breadcrumb() {
   else if (pathname === "/about") {
     items = [{ label: "Home", path: "/" }, { label: "About" }];
   }
+
   // Contact: Home / Contact
   else if (pathname === "/contact") {
     items = [{ label: "Home", path: "/" }, { label: "Contact" }];

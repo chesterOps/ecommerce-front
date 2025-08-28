@@ -10,12 +10,12 @@ const NewArrivalSection = () => {
         <CategoryCard title="Featured" heading="New Arrival" />
         <div className="container">
           <div className="ArrivalCards">
-            <ArrivalCard image="src/assets/ps5.jpg" />
+            <ArrivalCard image="/ps5.jpg" />
             <div className="right">
-              <ArrivalCard image="src/assets/women-collection.jpg" />
+              <ArrivalCard image="/women-collection.jpg" />
               <div className="grid-bottom">
-                <ArrivalCard image="src/assets/speakers.jpg" />
-                <ArrivalCard image="src/assets/perfumes.jpg" />
+                <ArrivalCard image="/speakers.jpg" />
+                <ArrivalCard image="/perfumes.jpg" />
               </div>
             </div>
           </div>
@@ -26,17 +26,17 @@ const NewArrivalSection = () => {
           <Features
             title="FREE AND FAST DELIVERY"
             description="Free delivery for all orders over $140"
-            Imgsrc="/src/assets/services.svg"
+            Imgsrc="/services.svg"
           />
           <Features
             title="24/7 CUSTOMER SERVICE"
             description="Friendly 24/7 customer support"
-            Imgsrc="/src/assets/customer-service.svg"
+            Imgsrc="/customer-service.svg"
           />
           <Features
             title="MONEY BACK GUARANTEE"
             description="We return money within 30 days"
-            Imgsrc="/src/assets/money-back.svg"
+            Imgsrc="/money-back.svg"
           />
         </div>
       </div>
