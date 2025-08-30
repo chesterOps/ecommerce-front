@@ -64,7 +64,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="Container3">
+    <div className="container contact-box">
       <div className="Contact1">
         {/* Contact details */}
         <div className="contact-details">

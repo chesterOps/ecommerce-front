@@ -60,6 +60,8 @@ export default function Navbar() {
 
       setOpen(false);
       dispatch(clearUser());
+
+      navigate("/", { replace: true });
     } catch (err) {
       console.log(err);
     }

@@ -18,11 +18,40 @@ import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Shop from "./pages/Shop/Shop";
 import Category from "./pages/Category/Category";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchPage from "./pages/Search/SearchPage";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "./features/auth/userSlice";
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProfile = async () => {
+      try {
+        const response = await fetch(
+          `https://apiexclusive.onrender.com/api/v1/auth/get-profile`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.status === "success") dispatch(setUser(data.data));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProfile();
+  }, [dispatch]);
+
   return (
     <Router>
       <ScrollToTop />
