@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import './Account.css';
+import { useState } from "react";
+import "./Account.css";
 
 interface FormData {
   firstName: string;
@@ -12,70 +12,77 @@ interface FormData {
 }
 
 const Account: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>('My Profile');
+  const [activeSection, setActiveSection] = useState<string>("My Profile");
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSaveChanges = () => {
     // Basic validation
-    if (formData.newPassword && formData.newPassword !== formData.confirmPassword) {
-      setMessage('Passwords do not match');
+    if (
+      formData.newPassword &&
+      formData.newPassword !== formData.confirmPassword
+    ) {
+      setMessage("Passwords do not match");
       return;
     }
-    
+
     if (formData.newPassword && !formData.currentPassword) {
-      setMessage('Current password is required to change password');
+      setMessage("Current password is required to change password");
       return;
     }
 
     // Simulate saving
-    setMessage('Changes saved successfully!');
-    setTimeout(() => setMessage(''), 3000);
+    setMessage("Changes saved successfully!");
+    setTimeout(() => setMessage(""), 3000);
   };
 
   const handleCancel = () => {
     setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
     });
-    setMessage('Changes cancelled');
-    setTimeout(() => setMessage(''), 3000);
+    setMessage("Changes cancelled");
+    setTimeout(() => setMessage(""), 3000);
+  };
+
+  // Close sidebar when clicking on a menu item on mobile
+  const handleMenuItemClick = (section: string) => {
+    setActiveSection(section);
+    setSidebarOpen(false); // Close sidebar on mobile after selection
   };
 
   const renderContent = () => {
-    switch(activeSection) {
-      case 'My Profile':
+    switch (activeSection) {
+      case "My Profile":
         return (
           <>
             <h2 className="content-title">Edit Your Profile</h2>
-            
-            {message && (
-              <div className="message">
-                {message}
-              </div>
-            )}
+
+            {message && <div className="message">{message}</div>}
 
             <div className="form-row">
               <div className="form-group">
@@ -129,7 +136,7 @@ const Account: React.FC = () => {
 
             <div className="password-section">
               <h3 className="password-title">Password Changes</h3>
-              
+
               <div className="form-group">
                 <input
                   type="password"
@@ -165,14 +172,14 @@ const Account: React.FC = () => {
             </div>
 
             <div className="button-group">
-              <button 
+              <button
                 onClick={handleCancel}
                 className="button button-cancel"
                 type="button"
               >
                 Cancel
               </button>
-              <button 
+              <button
                 onClick={handleSaveChanges}
                 className="button button-save"
                 type="button"
@@ -194,28 +201,48 @@ const Account: React.FC = () => {
 
   return (
     <div className="container">
+      {/* Hamburger Menu - should be outside main-content for proper positioning */}
+      <button
+        className="hamburger"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        aria-label="Toggle menu"
+      >
+        ☰
+      </button>
 
+      {/* Overlay for mobile when sidebar is open */}
+      {sidebarOpen && (
+        <div className="overlay" onClick={() => setSidebarOpen(false)} />
+      )}
 
       <div className="main-content">
         {/* Sidebar */}
-        <div className="sidebar">
+        <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <h3 className="sidebar-title">Manage My Account</h3>
           <ul className="sidebar-list">
-            <li 
-              className={`sidebar-item ${activeSection === 'My Profile' ? 'sidebar-item-active' : ''}`}
-              onClick={() => setActiveSection('My Profile')}
+            <li
+              className={`sidebar-item ${
+                activeSection === "My Profile" ? "sidebar-item-active" : ""
+              }`}
+              onClick={() => handleMenuItemClick("My Profile")}
             >
               My Profile
             </li>
-            <li 
-              className={`sidebar-item ${activeSection === 'Address Book' ? 'sidebar-item-active' : ''}`}
-              onClick={() => setActiveSection('Address Book')}
+            <li
+              className={`sidebar-item ${
+                activeSection === "Address Book" ? "sidebar-item-active" : ""
+              }`}
+              onClick={() => handleMenuItemClick("Address Book")}
             >
               Address Book
             </li>
-            <li 
-              className={`sidebar-item ${activeSection === 'My Payment Options' ? 'sidebar-item-active' : ''}`}
-              onClick={() => setActiveSection('My Payment Options')}
+            <li
+              className={`sidebar-item ${
+                activeSection === "My Payment Options"
+                  ? "sidebar-item-active"
+                  : ""
+              }`}
+              onClick={() => handleMenuItemClick("My Payment Options")}
             >
               My Payment Options
             </li>
@@ -223,27 +250,31 @@ const Account: React.FC = () => {
 
           <h3 className="sidebar-title">My Orders</h3>
           <ul className="sidebar-list">
-            <li 
-              className={`sidebar-item ${activeSection === 'My Returns' ? 'sidebar-item-active' : ''}`}
-              onClick={() => setActiveSection('My Returns')}
+            <li
+              className={`sidebar-item ${
+                activeSection === "My Returns" ? "sidebar-item-active" : ""
+              }`}
+              onClick={() => handleMenuItemClick("My Returns")}
             >
               My Returns
             </li>
-            <li 
-              className={`sidebar-item ${activeSection === 'My Cancellations' ? 'sidebar-item-active' : ''}`}
-              onClick={() => setActiveSection('My Cancellations')}
+            <li
+              className={`sidebar-item ${
+                activeSection === "My Cancellations"
+                  ? "sidebar-item-active"
+                  : ""
+              }`}
+              onClick={() => handleMenuItemClick("My Cancellations")}
             >
               My Cancellations
             </li>
           </ul>
 
           <h3 className="sidebar-title">My Wishlist</h3>
-        </div>
+        </aside>
 
         {/* Main Content */}
-        <div className="content">
-          {renderContent()}
-        </div>
+        <div className="content">{renderContent()}</div>
       </div>
     </div>
   );
