@@ -1,0 +1,133 @@
+.wishlist-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+}
+
+/* Image Wrapper */
+.wishlist-card-img {
+  position: relative;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.wishlist-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Badges */
+.wishlist-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.wishlist-badge.discount {
+  background-color: #db4444;
+}
+
+.wishlist-badge.new {
+  background-color: #00ff66;
+}
+
+/* Action Buttons (delete / view) */
+.wishlist-card-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wishlist-icon-btn {
+  width: 34px;
+  height: 34px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.wishlist-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Add to Cart Button */
+.wishlist-add-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 8px 0;
+  font-weight: 500;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-add-btn span {
+  margin-left: 7px;
+}
+
+/* Info Section */
+.wishlist-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wishlist-card-info a {
+  color: #000;
+  text-decoration: none;
+}
+
+.wishlist-card .ratings {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.wishlist-card-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wishlist-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wishlist-price .price {
+  color: #db4444;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wishlist-price .old-price {
+  color: #737373;
+  text-decoration: line-through;
+}

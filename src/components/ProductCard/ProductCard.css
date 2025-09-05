@@ -1,0 +1,227 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.product-card a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.price-ratings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.prices {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-price {
+  color: #db4444;
+}
+
+.previous-price { 
+  color: #737373;
+  text-decoration: line-through;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Tags */
+.product-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag {
+  color: white;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.feature {
+  background-color: #00ff66;
+}
+
+.discount-rate {
+  background-color: #db4444;
+}
+
+/* Options */
+.options {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Product Info */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-info a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+}
+
+.star.gold {
+  color: #ffad33;
+}
+
+.star.grey {
+  color: #acacac;
+}
+
+.no-of-ratings {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+  color: #737373;
+  margin-left: 8px;
+}
+
+/* Color Swatches */
+.colors {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.color.active {
+  border: 2px solid black;
+}
+
+.icon {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color.active {
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  outline: 2px solid black;
+}
+
+.image-wrapper {
+  position: relative;
+  background-color: #f2f2f2;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.product-image {
+  display: block;
+}
+
+.options {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.icon-container {
+  width: 34px;
+  height: 34px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-container {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-container:hover {
+  transform: scale(1.1);
+}
+
+/* Active heart icon */
+.icon-container svg.heart-active {
+  color: red;
+}
+
+.add-to-cart-btn {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  line-height: 24px;
+  transform: translateX(-50%);
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 8px 0px;
+  font-weight: 500;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.product-card:hover .add-to-cart-btn {
+  opacity: 1;
+}

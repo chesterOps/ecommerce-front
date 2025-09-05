@@ -1,0 +1,99 @@
+.hero-container {
+  display: flex;
+  align-items: start;
+  gap: 45px;
+  margin-bottom: 40px;
+}
+
+.hero-categories {
+  position: fixed;
+  left: -233px;
+  color: #000;
+  min-width: 233px;
+  padding: 0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.hero-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-categories li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hero-categories li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.hero-categories li a:hover {
+  color: #db4444;
+}
+
+.banner-container {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #757575;
+  cursor: pointer;
+  border: 2px solid #757575;
+}
+
+.dot.active {
+  background-color: #db4444;
+  border: 2px solid white;
+}
+
+.banner-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (min-width: 578px) {
+  .hero-container {
+    margin-bottom: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .banner-container {
+    margin-top: 40px;
+  }
+  .hero-container {
+    margin-bottom: 140px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-categories {
+    position: static;
+    left: 0;
+    padding: 40px 16px 0 0;
+  }
+}

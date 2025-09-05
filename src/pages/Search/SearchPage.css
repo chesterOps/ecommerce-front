@@ -1,0 +1,18 @@
+.search-page {
+  padding: 40px 0px;
+}
+
+.search-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.search-title span {
+  color: crimson;
+}
+
+.loading,
+.no-results {
+  font-size: 16px;
+  margin-top: 40px;
+}

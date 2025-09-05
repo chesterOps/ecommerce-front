@@ -1,0 +1,9 @@
+.best-selling {
+  margin-bottom: 70px;
+}
+
+@media (min-width: 768px) {
+  .best-selling {
+    margin-bottom: 140px;
+  }
+}

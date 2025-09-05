@@ -1,0 +1,8 @@
+.arrival-card {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.arrival-card:hover {
+  transform: translateY(-6px);
+}

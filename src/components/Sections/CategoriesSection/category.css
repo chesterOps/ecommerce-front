@@ -1,0 +1,28 @@
+.category-card2 {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Poppins", "San-serif";
+}
+
+.category-card2:hover {
+  transform: translateY(-4px);
+  background-color: #db4444;
+  color: white;
+  border-color: #db4444;
+  cursor: pointer;
+}
+
+.category-card2 h3 {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  font-weight: 400;
+  font-family: "Poppins", "San-serif";
+}
