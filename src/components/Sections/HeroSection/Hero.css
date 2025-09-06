@@ -97,3 +97,8 @@
     padding: 40px 16px 0 0;
   }
 }
+@media (max-width: 1200px) {
+    .banner-image{
+    height: 200px !important;
+  }
+}

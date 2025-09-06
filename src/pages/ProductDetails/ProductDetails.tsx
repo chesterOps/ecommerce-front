@@ -10,9 +10,18 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductListLoader from "../../components/Loaders/ProductList/ProductLoader";
 import ProductDetailsLoader from "../../components/Loaders/ProductDetailsLoader/ProductDetailsLoader";
+import { FaHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+  isInWishlist,
+} from "../../features/wishlist/wishlistSlice";
+import { useNavigate } from "react-router-dom";
+import { addItem } from "../../features/cart/cartSlice";
 //import { useDispatch } from "react-redux";
 //import { addItem } from "../../features/cart/cartSlice";
-
 interface IProduct {
   _id: string;
   title: string;
@@ -24,6 +33,8 @@ interface IProduct {
   rating?: { value: number; length: number };
   colors?: { name: string; hex: string }[];
   sizes?: string[];
+  slug: string;
+  createdAt?: string;
 }
 
 const ProductDetails: React.FC = () => {
@@ -36,8 +47,10 @@ const ProductDetails: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<string>("blue");
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
-  //const dispatch = useDispatch();
-  //const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isInWishList = useSelector(
+    product ? isInWishlist(product._id) : () => false
+  );
 
   const handleQuantityChange = (change: number): void => {
     if (quantity + change > (product?.stock ?? 10)) return;
@@ -99,20 +112,25 @@ const ProductDetails: React.FC = () => {
     getRelatedProducts();
   }, [params.slug]);
 
-  // const handleBuyNow = () => {
-  //   if (!product) return;
+  // the buy now logic  const navigate = useNavigate();
+const navigate = useNavigate();
+  const handleBuyNow = () => {
+    if (!product) return;
 
-  //   // Add to cart
-  //   dispatch(
-  //     addItem({
-  //       id: product._id,
-  //       quantity,
-  //       price: product.price,
-  //       image: product.images[0].url,
-  //       title: product.title,
-  //     })
-  //   );
-  // };
+    // Add product to cart
+    dispatch(
+      addItem({
+        id: product._id,
+        image: product.images[0].url,
+        price: product.price,
+        title: product.title,
+        quantity,
+      })
+    );
+
+    // Navigate to checkout
+    navigate("/checkout");
+  };
 
   return (
     <div className="product-page">
@@ -125,7 +143,7 @@ const ProductDetails: React.FC = () => {
           {product ? (
             <div className="product-container">
               {/* Image Gallery */}
-              <div className="image-gallery">
+              <div className="image-gallery2">
                 <div className="thumbnail-list">
                   {product.images.map((image, index) => (
                     <div
@@ -139,7 +157,7 @@ const ProductDetails: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                <div className="main-image">
+                <div className="main-image2">
                   <img
                     src={product.images[selectedImage].url}
                     alt={product.title}
@@ -216,9 +234,41 @@ const ProductDetails: React.FC = () => {
                     <span>{quantity}</span>
                     <button onClick={() => handleQuantityChange(1)}>+</button>
                   </div>
-                  <button className="buy-now-btn">Buy Now</button>
-                  <button className="wishlist-btn">
-                    <AiOutlineHeart size={20} />
+                  <button className="buy-now-btn" onClick={handleBuyNow}>
+      Buy Now
+    </button>
+
+                  
+                  <button className="wishlist-btn2">
+                    
+                    {isInWishList ? (
+                      <FaHeart
+                        size={20}
+                        fill="red"
+                        onClick={() =>
+                          dispatch(removeFromWishlist(product._id))
+                        }
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        size={20}
+                        onClick={() =>
+                          dispatch(
+                            addToWishlist({
+                              id: product._id,
+                              title: product.title,
+                              image: product.images[0].url,
+                              price: product.price,
+                              discount: product.discount,
+                              createdAt: product.createdAt
+                                ? new Date(product.createdAt)
+                                : new Date(),
+                              slug: product.slug,
+                            })
+                          )
+                        }
+                      />
+                    )}
                   </button>
                 </div>
                 <div className="delivery-info">

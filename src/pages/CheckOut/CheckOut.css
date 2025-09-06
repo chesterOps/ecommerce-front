@@ -217,6 +217,9 @@
     font-size: 18px;
   }
 
+  .checkout-products{
+    width: 100%;
+  }
   .checkout-coupon {
     flex-direction: column;
   }

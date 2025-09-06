@@ -211,9 +211,9 @@
   .cart-header,
   .cart-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 4fr 1fr;
     font-size: 14px;
-    padding: 10px 2px;
+    padding: 10px 10px;
     gap: 8px;
     align-items: center;
   }
@@ -237,6 +237,10 @@
     object-fit: contain;
   }
 
+  .coupon-section input {
+    width: 72% !important;
+    height: 50px;
+  }
   .cart-buttons {
     flex-direction: column;
     gap: 10px;
