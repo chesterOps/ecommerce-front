@@ -44,19 +44,19 @@ const OurProducts = () => {
         {loading ? (
           <ProductListLoader count={8} />
         ) : (
-          <div className="row product-row">
+          <>
             {products.length > 0 ? (
-              <>
+              <div className="row product-row">
                 {products.map((product, index) => (
                   <div className="col-lg-4 col-sm-2" key={index}>
                     <ProductCard product={product} />
                   </div>
                 ))}
-              </>
+              </div>
             ) : (
               <div>No products found</div>
             )}
-          </div>
+          </>
         )}
       </div>
       <div className="button-container">

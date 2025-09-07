@@ -142,16 +142,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.discount ? (
               <div className="prices">
                 <p className="product-price">
-                  $
+                  ₦
                   {(
                     product.price -
                     product.price * product.discount * 0.01
                   ).toFixed(2)}
                 </p>
-                <p className="previous-price">${product.price.toFixed(2)}</p>
+                <p className="previous-price">₦{product.price.toFixed(2)}</p>
               </div>
             ) : (
-              <p className="product-price">${product.price.toFixed(2)}</p>
+              <p className="product-price">₦{product.price.toFixed(2)}</p>
             )}
             {/* {product.rating && (
             <div className="ratings">

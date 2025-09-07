@@ -14,11 +14,14 @@ import { clearUser, getUser } from "../../features/auth/userSlice";
 import { totalCartItems } from "../../features/cart/cartSlice";
 import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
 import "./Navbar.css";
+import MobileNav from "../MobileNav/MobileNav";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFixed, setIsFixed] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -68,6 +71,20 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 45) {
+        // change threshold as needed
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         dropdownRef.current &&
@@ -100,11 +117,28 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <nav className="navbar">
+      <nav className={`navbar ${isFixed ? "fixed" : ""}`}>
         <div className="container">
-          <Link to="/">
-            <div className="navbar__logo">Exclusive</div>
-          </Link>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+            }}
+          >
+            <button
+              className="nav-mobile"
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              ☰
+            </button>
+            {menuOpen && (
+              <MobileNav close={() => setMenuOpen(false)} isOpen={menuOpen} />
+            )}
+            <Link to="/">
+              <div className="navbar__logo">Exclusive</div>
+            </Link>
+          </div>
           <ul className="navbar__links">
             <li>
               <Link to="/">Home</Link>

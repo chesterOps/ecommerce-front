@@ -12,8 +12,8 @@ const About = () => {
   return (
     <>
       <section className="container about-main">
-        <div className="about-container">
-          <div className="Leftcontent col-6">
+        <div className="about-row">
+          <div className="Leftcontent ">
             <h2>Our Story</h2>
             <p>
               Launched in 2015, Exclusive is South Asia’s premier online
@@ -28,15 +28,15 @@ const About = () => {
               ranging from consumer.
             </p>
           </div>
-          <div className="rightPicture col-6">
+          <div className="rightPicture ">
             <img src="/about-image.jpg" alt="two women shopping " />
           </div>
         </div>
       </section>
 
       <section className="container">
-        <div className="row1">
-          <div>
+        <div className="row">
+          <div className="col-lg-4 col-sm-2">
             <div className="statistics-border">
               <div className="radius1">
                 <div className="radius2">
@@ -49,7 +49,7 @@ const About = () => {
               <p>Sellers active on our site</p>
             </div>
           </div>
-          <div>
+          <div className="col-lg-4 col-sm-2">
             <div className="statistics-border">
               <div className="radius1">
                 <div className="radius2">
@@ -59,10 +59,10 @@ const About = () => {
                 </div>
               </div>
               <h3>33k</h3>
-              <p>Monthly Product Sale</p>
+              <p>Monthly product sale</p>
             </div>
           </div>
-          <div>
+          <div className="col-lg-4 col-sm-2">
             <div className="statistics-border">
               <div className="radius1">
                 <div className="radius2">
@@ -76,7 +76,7 @@ const About = () => {
             </div>
           </div>
 
-          <div>
+          <div className="col-lg-4 col-sm-2">
             <div className="statistics-border">
               <div className="radius1">
                 <div className="radius2">
@@ -92,7 +92,7 @@ const About = () => {
         </div>
       </section>
       <div className="container actors">
-        <div className="row2">
+        <div className="row">
           <div className="col-md-3">
             <div className="actor">
               <div className="picture">

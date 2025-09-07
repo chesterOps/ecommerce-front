@@ -3,6 +3,7 @@ import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
 import Button from "../../components/Button/Button";
 import "./Contact.css";
+import { toast } from "react-toastify";
 
 // ✅ Type for form data
 interface FormData {
@@ -21,8 +22,6 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,8 +32,6 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setSuccessMessage(null);
-    setError(null);
 
     try {
       const res = await fetch(
@@ -50,13 +47,14 @@ const Contact = () => {
         throw new Error("Failed to send message");
       }
 
-      setSuccessMessage("✅ Your message has been sent!");
+      toast.success("Your message has been sent!");
+
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(err.message);
+        toast.error(err.message);
       } else {
-        setError("❌ Something went wrong. Try again!");
+        toast.error("Something went wrong. Try again!");
       }
     } finally {
       setLoading(false);
@@ -129,9 +127,6 @@ const Contact = () => {
           <div className="message-btn" onClick={handleSubmit}>
             <Button title={loading ? "Sending..." : "Send Message"} />
           </div>
-          {/* ✅ Inline messages */}
-          {successMessage && <p className="form-message">{successMessage}</p>}
-          {error && <p className="form-message error">{error}</p>}
         </form>
       </div>
     </div>

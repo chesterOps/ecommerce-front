@@ -119,17 +119,17 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
           {product.discount ? (
             <>
               <span className="price">
-                $
+                ₦
                 {(
                   product.price -
                   product.price * product.discount * 0.01
                 ).toFixed(2)}
               </span>
 
-              <span className="old-price">${product.price.toFixed(2)}</span>
+              <span className="old-price">₦{product.price.toFixed(2)}</span>
             </>
           ) : (
-            <span className="price">${product.price.toFixed(2)}</span>
+            <span className="price">₦{product.price.toFixed(2)}</span>
           )}
         </div>
       </div>

@@ -24,6 +24,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "./features/auth/userSlice";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,12 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ToastContainer
+        position="top-left"
+        toastStyle={{
+          fontFamily: "Poppins",
+        }}
+      />
       <Navbar />
       <Breadcrumb />
       <main>

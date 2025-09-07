@@ -22,27 +22,27 @@ h5 {
 
 .container {
   width: 100%;
-  padding: 0 15px;
+  padding: 0 10px;
   margin: 0 auto;
   max-width: 1200px;
 }
 
 .row {
+  margin-left: -10px;
+  margin-right: -10px;
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px; /* matches column padding */
-  margin-left: -15px;
-  row-gap: 30px;
-}
-
-.product-row {
   row-gap: 30px;
 }
 
 [class*="col-"] {
-  padding-right: 15px; /* half of the gutter size */
-  padding-left: 15px;
+  padding-right: 10px; /* half of the gutter size */
+  padding-left: 10px;
   width: 100%;
+}
+
+.product-row {
+  row-gap: 30px;
 }
 
 /* Small devices (≥480px) → col-sm-2 */
@@ -50,6 +50,20 @@ h5 {
   .col-sm-2 {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .row {
+    margin-right: -15px; /* matches column padding */
+    margin-left: -15px;
+  }
+
+  [class*="col-"] {
+    padding-right: 15px; /* half of the gutter size */
+    padding-left: 15px;
   }
 }
 

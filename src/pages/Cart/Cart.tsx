@@ -121,7 +121,7 @@ const Cart: React.FC = () => {
                     />
                     <span className="cart-product-name">{item.title}</span>
                   </div>
-                  <span className="cart-price">${item.price.toFixed(2)}</span>
+                  <span className="cart-price">₦{item.price.toFixed(2)}</span>
                   <div className="cart-counter">
                     <input
                       type="number"
@@ -132,7 +132,7 @@ const Cart: React.FC = () => {
                     />
                   </div>
                   <span className="cart-subtotal">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ₦{(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -176,12 +176,12 @@ const Cart: React.FC = () => {
                 <h3>Cart Total</h3>
                 <div className="total-row">
                   <span>Subtotal:</span>
-                  <span>${cartTotal.toFixed(2)}</span>
+                  <span>₦{cartTotal.toFixed(2)}</span>
                 </div>
                 {cartDiscount > 0 && (
                   <div className="total-row">
                     <span>Discount:</span>
-                    <span>-${(subTotal - totalPrice).toFixed(2)}</span>
+                    <span>-₦{(subTotal - totalPrice).toFixed(2)}</span>
                   </div>
                 )}
                 <div className="total-row" id="shipping1">
@@ -190,7 +190,7 @@ const Cart: React.FC = () => {
                 </div>
                 <div className="total-row total">
                   <span>Total:</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>₦{totalPrice.toFixed(2)}</span>
                 </div>
 
                 <Link to="/checkout">

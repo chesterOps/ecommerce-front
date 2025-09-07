@@ -40,7 +40,19 @@
   background-color: white;
   padding-top: 28px;
   padding-bottom: 16px;
+  position: relative;
+  transition: box-shadow 0.3s ease, position 0.3s ease;
+  z-index: 50;
 }
+/* Fixed after scroll */
+.navbar.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
 .navbar a {
   text-decoration: none;
   color: #000;

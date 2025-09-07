@@ -252,20 +252,20 @@ const CheckOut = () => {
                   <p>{item.title}</p>
                 </div>
                 <span className="price">
-                  {(item.price * item.quantity).toFixed(2)}
+                  ₦{(item.price * item.quantity).toFixed(2)}
                 </span>
               </div>
             ))}
 
             <div className="checkout-totals">
               <p>Subtotal:</p>{" "}
-              <span className="price">${subTotal.toFixed(2)}</span>
+              <span className="price">₦{subTotal.toFixed(2)}</span>
             </div>
             {cartDiscount > 0 && (
               <div className="checkout-totals">
                 <p>Discount: </p>
                 <span className="price">
-                  -${(subTotal - totalPrice).toFixed(2)}
+                  -₦{(subTotal - totalPrice).toFixed(2)}
                 </span>
               </div>
             )}
@@ -274,7 +274,7 @@ const CheckOut = () => {
             </div>
             <div className="checkout-totals total">
               <p>Total:</p>{" "}
-              <span className="price">${totalPrice.toFixed(2)}</span>
+              <span className="price">₦{totalPrice.toFixed(2)}</span>
             </div>
 
             <div className="payment-method">

@@ -10,12 +10,15 @@ const NewArrivalSection = () => {
         <CategoryCard title="Featured" heading="New Arrival" />
         <div className="container">
           <div className="ArrivalCards">
-            <ArrivalCard image="/ps5.jpg" />
+            <ArrivalCard image="/ps5.jpg" url="/shop/playstation-five" />
             <div className="right">
-              <ArrivalCard image="/women-collection.jpg" />
+              <ArrivalCard
+                image="/women-collection.jpg"
+                url="/category/womens-fashion"
+              />
               <div className="grid-bottom">
-                <ArrivalCard image="/speakers.jpg" />
-                <ArrivalCard image="/perfumes.jpg" />
+                <ArrivalCard image="/speakers.jpg" url="/category/speakers" />
+                <ArrivalCard image="/perfumes.jpg" url="/category/perfumes" />
               </div>
             </div>
           </div>

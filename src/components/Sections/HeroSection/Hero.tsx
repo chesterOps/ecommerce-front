@@ -4,11 +4,23 @@ import slide2 from "../../../assets/ps5.jpg";
 import slide3 from "../../../assets/sneakers.jpg";
 import slide4 from "../../../assets/tv.jpg";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
 export default function HeroSection() {
   const banners = [slide1, slide2, slide3, slide4];
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
+
+  // Handle search
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,7 +65,24 @@ export default function HeroSection() {
           </ul>
         </aside>
         {/* Main Hero Content */}
+
         <div className="banner-container">
+          <form className="mobile-search" onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <PiMagnifyingGlass
+              className="bs"
+              size={24}
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={handleSearch}
+            />
+          </form>
           <div className="banner-image">
             <Link to="/shop">
               <img src={banners[currentSlide]} alt="Banner" />

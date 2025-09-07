@@ -1,0 +1,112 @@
+/* Dark overlay behind menu */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-mobile {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+}
+
+/* Slide-in mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  padding: 20px 16px;
+  list-style: none;
+  margin: 0;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: left 0.3s ease;
+  display: none;
+  overflow-y: auto;
+}
+
+/* Active states when menu is open */
+.mobile-overlay.active {
+  opacity: 1;
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+/* Links and buttons */
+.mobile-menu a,
+.mobile-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 0;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu button:hover {
+  color: #db4444;
+}
+
+/* Close button */
+.mobile-menu > li:first-child button {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Dropdown styling */
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-menu {
+  list-style: none;
+  margin: 6px 0 0 12px;
+  padding: 0;
+  border-left: 2px solid #eee;
+}
+
+.dropdown-menu li a {
+  padding: 8px 0 8px 12px;
+  font-size: 15px;
+  color: #444;
+}
+
+.dropdown-menu li a:hover {
+  color: #db4444;
+}
+
+/* Responsive only below 992px */
+@media (max-width: 991px) {
+  .nav-mobile,
+  .mobile-overlay,
+  .mobile-menu {
+    display: block;
+  }
+}
