@@ -3,18 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/auth/userSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
     setLoading(true);
 
     try {
@@ -36,16 +35,21 @@ const Login = () => {
         throw new Error(data.message || "Login failed");
       }
 
+      // Set success message
+      toast.success(data.message);
+
       // Set user
       dispatch(setUser(data.data));
 
-      // Navigate to home page
-      navigate("/");
+      // Navigate to home
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        toast.error(err.message);
       } else {
-        setError("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
     } finally {
       setLoading(false);
@@ -57,9 +61,9 @@ const Login = () => {
       <div className="login-image">
         <img src="/sideimage.png" alt="Shopping Illustration" />
       </div>
-      <div className="login-form-section">
+      <div className="signup-form-section">
         <div className="login-form-wrapper">
-          <h2 className="login-title">Log in to Exclusive</h2>
+          <h2 className="signup-title">Log in to Exclusive</h2>
           <p className="login-subtitle">Enter your details below</p>
           <form className="login-form" onSubmit={handleSubmit}>
             <input
@@ -78,8 +82,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
-            {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
             <div className="login-actions">
               <button type="submit" className="login-btn" disabled={loading}>

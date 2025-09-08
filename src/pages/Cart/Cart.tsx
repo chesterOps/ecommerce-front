@@ -7,6 +7,8 @@ import {
   deleteItem,
   getCartDiscount,
   getCartItems,
+  getCoupon,
+  removeCoupon,
   totalCartPrice,
   updateCart,
 } from "../../features/cart/cartSlice";
@@ -27,6 +29,8 @@ const Cart: React.FC = () => {
   const subTotal = useSelector(totalCartPrice);
 
   const cartDiscount = useSelector(getCartDiscount);
+
+  const coupon = useSelector(getCoupon);
 
   const totalPrice = subTotal - (subTotal * cartDiscount) / 100;
 
@@ -114,25 +118,35 @@ const Cart: React.FC = () => {
                     >
                       ×
                     </button>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="cart-img"
-                    />
-                    <span className="cart-product-name">{item.title}</span>
+                    <Link to={`/shop/${item.slug}`}>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="cart-img"
+                      />
+                    </Link>
+                    <Link to={`/shop/${item.slug}`}>
+                      <span className="cart-product-name">{item.title}</span>
+                    </Link>
                   </div>
-                  <span className="cart-price">₦{item.price.toFixed(2)}</span>
+                  <span className="cart-price">
+                    <span className="show-mobile">Price: </span>₦
+                    {item.price.toFixed(2)}
+                  </span>
                   <div className="cart-counter">
+                    <span className="show-mobile">Quantity: </span>
                     <input
                       type="number"
                       min={1}
+                      max={5}
                       defaultValue={item.quantity}
                       name={item.id}
                       className="cart-qty-input"
                     />
                   </div>
                   <span className="cart-subtotal">
-                    ₦{(item.price * item.quantity).toFixed(2)}
+                    <span className="show-mobile">Subtotal: </span>₦
+                    {(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -155,21 +169,27 @@ const Cart: React.FC = () => {
         {cartTotal > 0 && (
           <>
             {/* Coupon + Cart Total */}
-            <div
-              className="cart-bottom"
-              style={{
-                justifyContent: `${
-                  cartDiscount === 0 ? "space-between" : "end"
-                }`,
-              }}
-            >
-              {cartDiscount === 0 && (
-                <form className="coupon-section" onClick={handleApplyCoupon}>
+            <div className="cart-bottom">
+              {cartDiscount === 0 ? (
+                <form
+                  className="cart-coupon-section"
+                  onClick={handleApplyCoupon}
+                >
                   <input type="text" placeholder="Coupon Code" name="coupon" />
-                  <button className="apply-btn" type="submit">
+                  <button className="cart-apply-btn" type="submit">
                     {pending ? "Loading..." : "Apply Coupon"}
                   </button>
                 </form>
+              ) : (
+                <div className="coupon-applied">
+                  <span className="coupon-text">Coupon Applied: {coupon}</span>
+                  <button
+                    className="remove-coupon-btn"
+                    onClick={() => dispatch(removeCoupon())}
+                  >
+                    X
+                  </button>
+                </div>
               )}
 
               <div className="cart-total">

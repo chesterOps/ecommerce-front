@@ -1,8 +1,8 @@
 /* ProductDetailsSkeleton.css */
 .product-details-skeleton {
   display: grid;
-  grid-template-columns: 80px 1fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 170px 500px 1fr;
+  gap: 20px;
 }
 
 /* Gallery column */
@@ -13,14 +13,13 @@
 }
 
 .gallery-thumbnail {
-  width: 80px;
-  height: 80px;
+  width: 170px;
+  height: 138px;
   border-radius: 4px;
 }
 
 .main-image {
   width: 100%;
-  height: 500px;
   border-radius: 4px;
 }
 
@@ -121,51 +120,16 @@
 /* RESPONSIVE STYLES */
 /* ---------------------- */
 
-/* Tablets */
-@media (max-width: 992px) {
-  .gallery {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .gallery-thumbnail {
-    width: 70px;
-    height: 70px;
-  }
-
-  .main-image {
-    grid-area: main-image;
-    height: 350px;
-  }
-}
-
 /* Mobile */
 @media (max-width: 992px) {
   .product-details-skeleton {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "main-image"
-      "gallery"
-      "skeleton-details";
-  }
-
-  .gallery {
-    flex-direction: row;
-    gap: 0.5rem;
-    justify-content: start;
-  }
-
-  .gallery-thumbnail {
-    width: 60px;
-    height: 60px;
-  }
-
-  .main-image {
-    height: 250px;
+    grid-template-columns: 170px 1fr;
   }
 
   .skeleton-details {
     gap: 0.8rem;
+    width: 100%;
+    grid-column: 1/3;
   }
 
   .skeleton-cta {
@@ -175,5 +139,27 @@
 
   .skeleton-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-details-skeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .gallery-thumbnail {
+    width: auto;
+  }
+
+  .main-image {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    height: 400px;
   }
 }

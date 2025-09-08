@@ -60,6 +60,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
         image: product.image,
         quantity: 1,
         id: product.id,
+        slug: product.slug,
       })
     );
 

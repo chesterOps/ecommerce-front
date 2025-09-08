@@ -61,6 +61,7 @@ export default function App() {
         toastStyle={{
           fontFamily: "Poppins",
         }}
+        autoClose={3000}
       />
       <Navbar />
       <Breadcrumb />

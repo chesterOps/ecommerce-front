@@ -95,7 +95,8 @@ const CheckOut = () => {
     }
 
     // Get items
-    const items = cart.map(({ id, ...rest }) => ({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const items = cart.map(({ id, slug, ...rest }) => ({
       ...rest,
       product: id,
     }));

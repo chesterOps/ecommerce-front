@@ -1,7 +1,7 @@
 /* Contact.css */
 
-.contact-box {
-  margin-top: 80px !important;
+.contact-box.container {
+  margin-top: 80px;
 }
 
 .Container3 {
@@ -109,7 +109,11 @@ textarea {
 }
 
 @media (max-width: 600px) {
-  .conatct-form {
+  .contact-form {
     padding: 20px;
+  }
+
+  .contact-box.container {
+    margin-top: 42px;
   }
 }

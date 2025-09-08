@@ -126,6 +126,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     price,
                     title: product.title,
                     quantity: 1,
+                    slug: product.slug,
                   })
                 )
               }

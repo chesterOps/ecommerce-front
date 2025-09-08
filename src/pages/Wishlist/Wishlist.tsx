@@ -51,6 +51,7 @@ export default function Wishlist() {
       image: item.image,
       quantity: 1,
       price: item.price,
+      slug: item.slug,
     }));
 
     // Add items to cart

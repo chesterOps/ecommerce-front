@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/auth/userSlice";
 import { useGoogleLogin } from "@react-oauth/google";
+import { toast } from "react-toastify";
 
 interface SignupResponse {
   status: string;
@@ -24,8 +25,6 @@ const Signup: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -33,7 +32,6 @@ const Signup: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const response = await fetch(
@@ -59,7 +57,7 @@ const Signup: React.FC = () => {
       }
 
       // Set success message
-      setSuccess(data.message);
+      toast.success(data.message);
 
       // Set user
       dispatch(setUser(data.data));
@@ -70,9 +68,9 @@ const Signup: React.FC = () => {
       }, 3000);
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        toast.error(err.message);
       } else {
-        setError("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
     } finally {
       setLoading(false);
@@ -80,8 +78,6 @@ const Signup: React.FC = () => {
   };
 
   const handleGoogleAuth = async (token: string) => {
-    setError(null);
-
     try {
       const response = await fetch(
         "https://apiexclusive.onrender.com/api/v1/auth/google-auth",
@@ -102,7 +98,7 @@ const Signup: React.FC = () => {
       }
 
       // Set success message
-      setSuccess(data.message);
+      toast.success(data.message);
 
       // Set user
       dispatch(setUser(data.data));
@@ -110,19 +106,19 @@ const Signup: React.FC = () => {
       // Navigate to home
       setTimeout(() => {
         navigate("/");
-      }, 3000);
+      }, 4000);
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        toast.error(err.message);
       } else {
-        setError("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
     }
   };
 
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => handleGoogleAuth(tokenResponse.access_token),
-    onError: () => setError("Login failed"),
+    onError: () => toast.error("Login failed"),
   });
 
   return (
@@ -137,10 +133,6 @@ const Signup: React.FC = () => {
         <div className="signup-form-wrapper">
           <h2 className="signup-title">Create an account</h2>
           <p className="signup-subtitle">Enter your details below</p>
-
-          {error && <p className="error-message">{error}</p>}
-          {success && <p className="success-message">{success}</p>}
-
           <form className="signup-form" onSubmit={handleSubmit}>
             <input
               type="text"

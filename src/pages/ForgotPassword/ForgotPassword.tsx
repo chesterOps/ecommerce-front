@@ -1,20 +1,15 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import "./ForgotPassword.css";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
-
   const [loading, setLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
-  const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
-    setError("");
 
     try {
       const response = await fetch(
@@ -29,12 +24,12 @@ const ForgotPassword = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message || "Password reset link sent to your email.");
+        toast.success(data.message || "Please check your email.");
       } else {
-        setError(data.message || "Something went wrong. Please try again.");
+        toast.error(data.message || "Something went wrong. Please try again.");
       }
     } catch {
-      setError("Network error. Please check your connection.");
+      toast.error("Network error. Please check your connection.");
     } finally {
       setLoading(false);
     }
@@ -48,14 +43,13 @@ const ForgotPassword = () => {
       </div>
 
       {/* Right Form Section */}
-      <div className="login-form-section">
+      <div className="signup-form-section">
         <div className="login-form-wrapper">
-          <h2 className="login-title">Forgot Password</h2>
+          <h2 className="signup-title">Forgot Password</h2>
           <p className="login-subtitle">
             Enter your email to reset your password
           </p>
-          {message && <p className="success-message">{message}</p>}
-          {error && <p className="error-message">{error}</p>}
+
           <form className="forgot-form" onSubmit={handleSubmit}>
             <input
               type="email"

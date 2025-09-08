@@ -8,6 +8,7 @@ export interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  slug: string;
 }
 
 // Define state type
@@ -125,5 +126,7 @@ export const getCartDiscount = (state: { cart: CartState }) =>
   state.cart.discount;
 
 export const getCartItems = (state: { cart: CartState }) => state.cart.items;
+
+export const getCoupon = (state: { cart: CartState }) => state.cart.coupon;
 
 export default cartSlice.reducer;

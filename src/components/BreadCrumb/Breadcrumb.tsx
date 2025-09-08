@@ -13,6 +13,8 @@ function shouldShowBreadcrumb(pathname: string) {
   // Pages that DON'T show breadcrumb
   const hide = ["/", "/login", "/signup", "/wishlist", "/forgot-password"];
   if (hide.includes(pathname)) return false;
+
+  if (pathname.startsWith("/reset-password")) return false;
   return true;
 }
 
@@ -70,11 +72,6 @@ export default function Breadcrumb() {
         label: `${categoryName?.at(0)?.toUpperCase()}${categoryName?.slice(1)}`,
       },
     ];
-  }
-
-  // About: Home / Reset password
-  else if (pathname.startsWith("/reset-password")) {
-    items = [{ label: "Home", path: "/" }, { label: "Reset password" }];
   }
 
   // Checkout (Account / My Account / Product / View Cart / Checkout)

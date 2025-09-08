@@ -17,7 +17,6 @@ export default function CategoryCard({
   title,
   heading,
   showButton,
-  showCounter,
   controls,
   endDate,
 }: CategoryCardProps) {
@@ -71,7 +70,10 @@ export default function CategoryCard({
         <div className="bottom">
           <div className="bottom-left">
             <h3 className="category-heading">{heading}</h3>
-            {showCounter && (
+            {(timeLeft.days > 0 ||
+              timeLeft.hours > 0 ||
+              timeLeft.minutes > 0 ||
+              timeLeft.seconds > 0) && (
               <div className="counter">
                 <div className="days">
                   <span>Days</span>{" "}

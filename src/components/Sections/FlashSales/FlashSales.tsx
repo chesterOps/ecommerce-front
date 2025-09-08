@@ -82,7 +82,6 @@ const FlashSales = () => {
         title="Today's"
         heading="Flash Sales"
         controls={<ArrowControls onLeftClick={prev} onRightClick={next} />}
-        showCounter={!loading ? true : false}
         endDate={endDate}
       />
       <div className="container">

@@ -2,7 +2,7 @@
   display: flex;
   min-height: 80vh;
   background-color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Left image */
@@ -34,15 +34,16 @@
 }
 
 .signup-title {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 32px;
   font-weight: 500;
   margin-bottom: 8px;
+  line-height: 1.2;
   color: #000;
 }
 
 .signup-subtitle {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #000;
@@ -56,7 +57,7 @@
 }
 
 .signup-input {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 12px 14px;
   border: none;
   border-bottom: 2px solid #ccc;
@@ -71,7 +72,7 @@
 
 /* Google Sign-in Button */
 .signup-google-btn {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +99,7 @@
 
 /* Create Account Button */
 .signup-btn {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #db4444;
   color: #fff;
   padding: 12px 34px;
@@ -116,7 +117,7 @@
 
 /* Footer link */
 .signup-footer {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   font-size: 14px;
   margin-top: 20px;
@@ -124,39 +125,44 @@
 }
 
 .signup-login-link {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   color: #666;
   text-decoration: underline;
 }
 
 .signup-login-link:hover {
-  color: #000; 
+  color: #000;
 }
 
-.error-message{
+.error-message {
   color: red;
 }
 
-.success-message{
+.success-message {
   color: green;
 }
 
-
 @media (max-width: 700px) {
-    .signup-page {
-        flex-direction: column;
-        min-height: unset;
-    }
-    .signup-image img{
-        display: none;
-    }
-    .signup-form-section {
-        flex: unset;
-        width: 100%;
-        padding: 24px 12px;
-    }
-    .signup-form-wrapper {
-        max-width: 100%;
-    }
+  .signup-page {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .signup-image img {
+    display: none;
+  }
+  .signup-form-section {
+    flex: unset;
+    width: 100%;
+    padding: 40px 12px;
+  }
+  .signup-form-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .signup-title {
+    font-size: 28px;
+  }
 }

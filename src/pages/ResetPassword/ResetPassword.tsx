@@ -1,21 +1,17 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const params = useParams<{ token: string }>();
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
-  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
-    setError("");
 
     try {
       const response = await fetch(
@@ -34,15 +30,15 @@ const ResetPassword = () => {
       }
 
       // Set message
-      setMessage(data.message);
+      toast.success(data.message);
 
       // Go to login page
-      setTimeout(() => navigate("/login"), 3000);
+      setTimeout(() => navigate("/login"), 4000);
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        toast.error(err.message);
       } else {
-        setError("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
     } finally {
       setLoading(false);
@@ -57,12 +53,10 @@ const ResetPassword = () => {
       </div>
 
       {/* Right Form Section */}
-      <div className="login-form-section">
+      <div className="signup-form-section">
         <div className="login-form-wrapper">
-          <h2 className="login-title">Reset Password</h2>
+          <h2 className="signup-title">Reset Password</h2>
           <p className="login-subtitle">Update your password</p>
-          {message && <p className="success-message">{message}</p>}
-          {error && <p className="error-message">{error}</p>}
           <form className="forgot-form" onSubmit={handleSubmit}>
             <input
               type="password"
