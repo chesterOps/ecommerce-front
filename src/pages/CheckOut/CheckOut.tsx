@@ -168,7 +168,7 @@ const CheckOut = () => {
               })
             );
         }
-        navigate(`/order-confirm/${resData.data._id}`);
+        navigate(`/order-confirm?status=successful&tx_ref=${resData.data._id}`);
       }
     } catch (err) {
       if (err instanceof Error) {

@@ -76,7 +76,7 @@ export default function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
           <Route path="/about" element={<About />} />
-          <Route path="/order-confirm/:orderId" element={<OrderConfirm />} />
+          <Route path="/order-confirm" element={<OrderConfirm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

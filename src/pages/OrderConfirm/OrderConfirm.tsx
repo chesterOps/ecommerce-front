@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./OrderConfirm.css";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../features/cart/cartSlice";
@@ -28,7 +28,8 @@ interface IOrder {
 }
 
 export default function OrderConfirm() {
-  const { orderId } = useParams();
+  const [searchParams] = useSearchParams();
+  const orderId = searchParams.get("tx_ref");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [order, setOrder] = useState<IOrder | null>(null);
