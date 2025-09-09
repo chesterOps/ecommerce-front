@@ -119,7 +119,7 @@ const CheckOut = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:3000/api/v1/orders/checkout",
+        "https://apiexclusive.onrender.com/api/v1/orders/checkout",
         {
           method: "POST",
           headers: {

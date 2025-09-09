@@ -39,7 +39,7 @@ export default function OrderConfirm() {
     const fetchOrder = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/v1/orders/${orderId}`,
+          `https://apiexclusive.onrender.com/api/v1/orders/${orderId}`,
           {
             method: "GET",
             headers: {
