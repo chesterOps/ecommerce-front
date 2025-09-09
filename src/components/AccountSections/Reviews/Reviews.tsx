@@ -55,7 +55,7 @@ const Reviews: React.FC = () => {
 
   return (
     <div className="reviews-page">
-      <h2 className="content-title">Product Reviews</h2>
+      <h2 className="content-title">My Reviews</h2>
 
       {loading ? (
         <div className="loading">Loading reviews...</div>
