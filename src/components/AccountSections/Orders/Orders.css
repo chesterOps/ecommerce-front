@@ -1,0 +1,171 @@
+/* Page container */
+.orders-page {
+  margin: 30px auto;
+  color: #333;
+}
+
+/* Title */
+
+/* Order card */
+.account-order-card {
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-bottom: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Order header */
+.account-order-header {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.account-order-header strong {
+  color: #111;
+}
+
+/* Order items list */
+.account-order-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+}
+
+.account-order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 15px;
+}
+
+.account-order-item:last-child {
+  border-bottom: none;
+}
+
+/* Total */
+.account-order-total {
+  text-align: right;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+/* Review button */
+.review-btn {
+  background: transparent;
+  color: #db4444;
+  border: none;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.review-btn:hover {
+  text-decoration: underline;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.25s ease;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #222;
+}
+
+/* Form elements */
+.modal label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.modal select,
+.modal textarea {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f5f5f5;
+  transition: border 0.2s ease;
+}
+
+.modal select:focus,
+.modal textarea:focus {
+  border-color: #db4444;
+}
+
+/* Modal actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.modal-actions button:first-child {
+  background: #db4444;
+  color: #fff;
+}
+
+.modal-actions button:first-child:hover {
+  background: #b83636;
+}
+
+.modal-actions button:last-child {
+  background: #eee;
+  color: #333;
+}
+
+.modal-actions button:last-child:hover {
+  background: #ddd;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

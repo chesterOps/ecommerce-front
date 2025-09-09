@@ -12,12 +12,15 @@ import {
 } from "../../features/wishlist/wishlistSlice";
 import { addItem, isInCart } from "../../features/cart/cartSlice";
 import "./ProductCard.css";
+import Stars from "../Stars/Stars";
 
 interface ProductCardProps {
   product: {
     title: string;
     _id: string;
     price: number;
+    stock: number;
+    rating?: { value: number; length: number };
     images: {
       url: string;
       public_id: string;
@@ -80,12 +83,16 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <FaHeart
                   className="heart-active"
                   size={18}
-                  onClick={() => dispatch(removeFromWishlist(product._id))}
+                  onClick={() => {
+                    if (product.stock <= 0) return;
+                    dispatch(removeFromWishlist(product._id));
+                  }}
                 />
               ) : (
                 <FaRegHeart
                   size={18}
-                  onClick={() =>
+                  onClick={() => {
+                    if (product.stock <= 0) return;
                     dispatch(
                       addToWishlist({
                         id: product._id,
@@ -96,8 +103,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                         createdAt: product.createdAt,
                         slug: product.slug,
                       })
-                    )
-                  }
+                    );
+                  }}
                 />
               )}
             </span>
@@ -118,7 +125,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           ) : (
             <button
               className="add-to-cart-btn"
-              onClick={() =>
+              onClick={() => {
+                if (product.stock <= 0) return;
                 dispatch(
                   addItem({
                     id: product._id,
@@ -128,10 +136,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                     quantity: 1,
                     slug: product.slug,
                   })
-                )
-              }
+                );
+              }}
             >
-              Add to Cart
+              {product.stock <= 0 ? "Out of stock" : "Add to Cart"}
             </button>
           )}
         </div>
@@ -154,18 +162,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             ) : (
               <p className="product-price">₦{product.price.toFixed(2)}</p>
             )}
-            {/* {product.rating && (
             <div className="ratings">
-              {Array.from({ length: 5 }).map((_, i) =>
-                i < product.rating ? (
-                  <AiFillStar size={20} key={i} className="star gold" />
-                ) : (
-                  <AiFillStar size={20} key={i} className="star grey" />
-                )
+              {product.rating && (
+                <>
+                  <Stars rating={product.rating.value ?? 0} />
+                  <span className="no-of-ratings">
+                    ({product.rating?.length})
+                  </span>
+                </>
               )}
-              <span className="no-of-ratings">({numberOfRatings})</span>
             </div>
-          )} */}
           </div>
           {product.colors && (
             <div className="colors">

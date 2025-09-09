@@ -55,6 +55,8 @@ const ProductDetails: React.FC = () => {
     setQuantity(Math.max(1, quantity + change));
   };
 
+  console.log(product);
+
   useEffect(() => {
     const getProductDetails = async () => {
       setLoading(true);
@@ -170,8 +172,10 @@ const ProductDetails: React.FC = () => {
                   <Stars rating={product.rating?.value ?? 0} />
                   <span className="review-count">
                     {product.rating
-                      ? `(${product.rating.length} Reviews)`
-                      : "(0 Reviews)"}
+                      ? `(${product.rating.length} Review${
+                          product.rating.length > 1 ? "s" : ""
+                        })`
+                      : `(0 Reviews)`}
                   </span>
                   <div className="in-stock-box">
                     <span className="divider" />
@@ -242,14 +246,19 @@ const ProductDetails: React.FC = () => {
                   <button
                     className="buy-now-btn"
                     onClick={handleBuyNow}
-                    disabled={product.stock === 0}
+                    disabled={product.stock <= 0}
                   >
                     Buy Now
                   </button>
 
                   <button
                     className="wishlist-btn2"
-                    disabled={product.stock === 0}
+                    disabled={product.stock <= 0}
+                    style={{
+                      pointerEvents: `${
+                        product.stock <= 0 ? "none" : "initial"
+                      }`,
+                    }}
                   >
                     {isInWishList ? (
                       <AiFillHeart

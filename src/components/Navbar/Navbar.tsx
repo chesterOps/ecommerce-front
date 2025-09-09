@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  BiLogOut,
-  BiShoppingBag,
-  BiStar,
-  BiUser,
-  BiXCircle,
-} from "react-icons/bi";
+import { BiLogOut, BiShoppingBag, BiStar, BiUser } from "react-icons/bi";
 import { IoIosArrowDown, IoMdHeartEmpty } from "react-icons/io";
 import { PiMagnifyingGlass, PiShoppingCartLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,8 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { clearUser, getUser } from "../../features/auth/userSlice";
 import { totalCartItems } from "../../features/cart/cartSlice";
 import { totalWishlistItems } from "../../features/wishlist/wishlistSlice";
-import "./Navbar.css";
 import MobileNav from "../MobileNav/MobileNav";
+import "./Navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -202,32 +196,27 @@ export default function Navbar() {
                 {user && open && (
                   <ul className="account-nav">
                     <li>
-                      <Link to="/account" onClick={() => setOpen(false)}>
+                      <Link
+                        to="/account?tab=My Profile"
+                        onClick={() => setOpen(false)}
+                      >
                         <BiUser size={24} />
                         Manage My Account
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/account?tab=orders"
+                        to="/account?tab=My Orders"
                         onClick={() => setOpen(false)}
                       >
                         <BiShoppingBag size={24} />
                         My Orders
                       </Link>
                     </li>
+
                     <li>
                       <Link
-                        to="/account?tab=cancellatons"
-                        onClick={() => setOpen(false)}
-                      >
-                        <BiXCircle size={24} />
-                        My Cancellations
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/account?tab=reviews"
+                        to="/account?tab=My Reviews"
                         onClick={() => setOpen(false)}
                       >
                         <BiStar size={24} />
