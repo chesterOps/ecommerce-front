@@ -1,30 +1,31 @@
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import Breadcrumb from "./components/BreadCrumb/Breadcrumb";
-import Home from "./pages/Home/Home";
-import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Cart from "./pages/Cart/Cart";
-import Checkout from "./pages/CheckOut/CheckOut";
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
-import Account from "./pages/Account/Account";
-import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
-import Wishlist from "./pages/Wishlist/Wishlist";
-import NotFound from "./pages/404Page/404Page";
-import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import Order from "./pages/Orders/Order";
-import TrackOrder from "./pages/TrackOrder/TrackOrder";
-import Shop from "./pages/Shop/Shop";
-import Category from "./pages/Category/Category";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import SearchPage from "./pages/Search/SearchPage";
-import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "./features/auth/userSlice";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Breadcrumb from "./components/BreadCrumb/Breadcrumb";
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { setUser } from "./features/auth/userSlice";
+import NotFound from "./pages/404Page/404Page";
+import About from "./pages/About/About";
+import Account from "./pages/Account/Account";
+import Cart from "./pages/Cart/Cart";
+import Category from "./pages/Category/Category";
+import Checkout from "./pages/CheckOut/CheckOut";
+import Contact from "./pages/Contact/Contact";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import OrderConfirm from "./pages/OrderConfirm/OrderConfirm";
+import Order from "./pages/Orders/Order";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import SearchPage from "./pages/Search/SearchPage";
+import Shop from "./pages/Shop/Shop";
+import Signup from "./pages/Signup/Signup";
+import TrackOrder from "./pages/TrackOrder/TrackOrder";
+import Wishlist from "./pages/Wishlist/Wishlist";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ export default function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
           <Route path="/about" element={<About />} />
+          <Route path="/order-confirm/:orderId" element={<OrderConfirm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

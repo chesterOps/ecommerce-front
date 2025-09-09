@@ -1,0 +1,128 @@
+.order-confirmation {
+  max-width: 750px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: #222;
+}
+
+.order-confirmation h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #111;
+}
+
+.order-confirmation .order-id {
+  margin-bottom: 25px;
+  text-align: center;
+  color: #666;
+  font-size: 15px;
+}
+
+.order-box {
+  border: 1px solid #e2e2e2;
+  padding: 18px 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-label {
+  font-weight: 600;
+  color: #444;
+}
+
+.order-status.success {
+  color: #2e8b57;
+  font-weight: 600;
+}
+
+.order-status.pending {
+  color: #d9822b;
+  font-weight: 600;
+}
+
+.order-confirmation h2 {
+  margin: 20px 0 12px;
+  font-size: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+.order-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+}
+
+.order-items-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-items-list li:last-child {
+  border-bottom: none;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 25px 0;
+  padding-top: 12px;
+  border-top: 2px solid #eee;
+}
+
+.order-continue-btn {
+  color: #fff;
+  border: none;
+  padding: 16px 48px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+  background: #db4444;
+}
+
+.order-continue-btn:hover {
+  background: #b93232;
+}
+
+/* Loading + Error states */
+.order-confirmation.loading,
+.order-confirmation.error {
+  text-align: center;
+  padding: 60px;
+}
+
+.order-confirmation.error p {
+  color: #b00020;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.order-confirmation.error button {
+  margin-top: 10px;
+  color: #fff;
+  border: none;
+  padding: 16px 48px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background: #db4444;
+}

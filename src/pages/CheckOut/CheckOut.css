@@ -140,11 +140,13 @@
   height: 24px;
   width: 24px;
   accent-color: #000;
+  cursor: pointer;
 }
 
 .checkout-coupon {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .checkout-button .main-button {
@@ -209,6 +211,10 @@
     padding: 20px 30px;
   }
 
+  .checkout-summary {
+    padding: 0;
+  }
+
   .checkout-form h1 {
     font-size: 22px;
   }
@@ -217,7 +223,7 @@
     font-size: 18px;
   }
 
-  .checkout-products{
+  .checkout-products {
     width: 100%;
   }
   .checkout-coupon {

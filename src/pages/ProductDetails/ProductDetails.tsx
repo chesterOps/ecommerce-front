@@ -17,7 +17,8 @@ import {
 } from "../../features/wishlist/wishlistSlice";
 import { useNavigate } from "react-router-dom";
 import { addItem } from "../../features/cart/cartSlice";
-import { BsDash, BsPlus, BsStarFill } from "react-icons/bs";
+import { BsDash, BsPlus } from "react-icons/bs";
+import Stars from "../../components/Stars/Stars";
 
 interface IProduct {
   _id: string;
@@ -166,11 +167,7 @@ const ProductDetails: React.FC = () => {
               <div className="product-details">
                 <h1 className="product-title">{product.title}</h1>
                 <div className="rating">
-                  <div className="stars">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <BsStarFill key={star} size={20} />
-                    ))}
-                  </div>
+                  <Stars rating={product.rating?.value ?? 0} />
                   <span className="review-count">
                     {product.rating
                       ? `(${product.rating.length} Reviews)`
@@ -178,7 +175,12 @@ const ProductDetails: React.FC = () => {
                   </span>
                   <div className="in-stock-box">
                     <span className="divider" />
-                    <span className={product.stock > 0 ? "stock-status" : ""}>
+                    <span
+                      className={product.stock > 0 ? "stock-status" : ""}
+                      style={{
+                        color: `${product.stock > 0 ? "#00ff66" : "red"}`,
+                      }}
+                    >
                       {product.stock > 0 ? "In Stock" : "Out of stock"}
                     </span>
                   </div>
@@ -237,11 +239,18 @@ const ProductDetails: React.FC = () => {
                       <BsPlus size={24} />
                     </button>
                   </div>
-                  <button className="buy-now-btn" onClick={handleBuyNow}>
+                  <button
+                    className="buy-now-btn"
+                    onClick={handleBuyNow}
+                    disabled={product.stock === 0}
+                  >
                     Buy Now
                   </button>
 
-                  <button className="wishlist-btn2">
+                  <button
+                    className="wishlist-btn2"
+                    disabled={product.stock === 0}
+                  >
                     {isInWishList ? (
                       <AiFillHeart
                         size={24}

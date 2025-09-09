@@ -4,16 +4,16 @@ import "./ProductDetailsLoader.css";
 const ProductDetailsLoader = () => {
   return (
     <div className="product-details-skeleton">
-      {/* Left gallery */}
-      <div className="gallery">
-        <div className="skeleton gallery-thumbnail"></div>
-        <div className="skeleton gallery-thumbnail"></div>
-        <div className="skeleton gallery-thumbnail"></div>
+      <div className="gallery-box">
+        <div className="gallery">
+          {/* Left gallery */}
+          <div className="skeleton gallery-thumbnail"></div>
+          <div className="skeleton gallery-thumbnail"></div>
+          <div className="skeleton gallery-thumbnail"></div>
+        </div>
+        {/* Main image */}
+        <div className="skeleton main-image"></div>
       </div>
-
-      {/* Main image */}
-      <div className="skeleton main-image"></div>
-
       {/* Right details */}
       <div className="skeleton-details">
         <div className="skeleton skeleton-title"></div>

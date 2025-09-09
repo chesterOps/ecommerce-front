@@ -6,9 +6,14 @@ import {
   applyCoupon,
   getCartDiscount,
   getCartItems,
+  getCoupon,
+  removeCoupon,
   totalCartPrice,
 } from "../../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { getUser } from "../../features/auth/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
   const [form, setForm] = useState({
@@ -21,15 +26,25 @@ const CheckOut = () => {
     email: "",
   });
 
+  const [paymentType, setPaymentType] = useState("card");
+
+  const [saveAddress, setSaveAddress] = useState(false);
+
   const [pending, setPending] = useState(false);
 
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const cart = useSelector(getCartItems);
 
   const subTotal = useSelector(totalCartPrice);
 
   const cartDiscount = useSelector(getCartDiscount);
+
+  const user = useSelector(getUser);
+
+  const coupon = useSelector(getCoupon);
 
   const totalPrice = subTotal - (subTotal * cartDiscount) / 100;
 
@@ -90,7 +105,7 @@ const CheckOut = () => {
       !form.phone ||
       !form.email
     ) {
-      alert("Please fill in all required fields!");
+      toast.error("Please fill in all required fields!");
       return;
     }
 
@@ -104,12 +119,13 @@ const CheckOut = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://apiexclusive.onrender.com/api/v1/orders/checkout",
+        "http://localhost:3000/api/v1/orders/checkout",
         {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          method: "POST",
+          credentials: "include",
           body: JSON.stringify({
             firstName: form.firstName,
             email: form.email,
@@ -120,6 +136,8 @@ const CheckOut = () => {
             addressLine1: form.addressLine1,
             addressLine2: form.addressLine2,
             items,
+            paymentMethod: paymentType,
+            saveAddress,
           }),
         }
       );
@@ -128,7 +146,11 @@ const CheckOut = () => {
 
       if (!response.ok) throw new Error(resData.message);
 
-      window.location = resData.data.data.link;
+      if (resData.method === "card")
+        return (window.location = resData.data.data.link);
+      else {
+        navigate(`/order-confirm/${resData.data._id}`);
+      }
     } catch (err) {
       if (err instanceof Error) {
         console.log(err.message);
@@ -230,17 +252,21 @@ const CheckOut = () => {
               required
             />
           </div>
-
-          <div className="save-info">
-            <input
-              type="checkbox"
-              id="save"
-              style={{ cursor: "pointer", accentColor: "#db4444" }}
-            />
-            <label htmlFor="save" style={{ color: "black", marginBottom: 0 }}>
-              Save this information for faster check-out next time
-            </label>
-          </div>
+          {!user?.billingAddress && (
+            <div className="save-info">
+              <input
+                type="checkbox"
+                id="save"
+                style={{ cursor: "pointer", accentColor: "#db4444" }}
+                name="saveAddress"
+                checked={saveAddress}
+                onChange={() => setSaveAddress((s) => !s)}
+              />
+              <label htmlFor="save" style={{ color: "black", marginBottom: 0 }}>
+                Save this information for faster check-out next time
+              </label>
+            </div>
+          )}
         </div>
 
         {/* Right Side: Order Summary */}
@@ -250,7 +276,9 @@ const CheckOut = () => {
               <div key={index} className="check-out-item">
                 <div>
                   <img src={item.image} alt={item.title} />
-                  <p>{item.title}</p>
+                  <p>
+                    {item.title} ({item.quantity})
+                  </p>
                 </div>
                 <span className="price">
                   ₦{(item.price * item.quantity).toFixed(2)}
@@ -285,20 +313,27 @@ const CheckOut = () => {
                     type="radio"
                     name="payment"
                     className="radio"
-                    defaultChecked
+                    checked={paymentType === "card"}
+                    onChange={() => setPaymentType("card")}
                   />
-                  <label>Bank</label>
+                  <label>Card</label>
                 </div>
                 <img src="/payments.svg" alt="" />
               </div>
               <div>
-                <input type="radio" name="payment" className="radio" />
+                <input
+                  type="radio"
+                  name="payment"
+                  className="radio"
+                  checked={paymentType === "cash-on-delivery"}
+                  onChange={() => setPaymentType("cash-on-delivery")}
+                />
                 <label>Cash on delivery</label>
               </div>
             </div>
           </div>
           <div className="checkout-buttons">
-            {!cartDiscount && (
+            {cartDiscount === 0 ? (
               <form className="checkout-coupon" onSubmit={handleApplyCoupon}>
                 <input type="text" placeholder="Coupon Code" name="coupon" />
                 <Button
@@ -306,6 +341,16 @@ const CheckOut = () => {
                   title={pending ? "Loading..." : "Apply Coupon"}
                 />
               </form>
+            ) : (
+              <div className="coupon-applied">
+                <span className="coupon-text">Coupon Applied: {coupon}</span>
+                <button
+                  className="remove-coupon-btn"
+                  onClick={() => dispatch(removeCoupon())}
+                >
+                  X
+                </button>
+              </div>
             )}
             <div className="checkout-button">
               <Button

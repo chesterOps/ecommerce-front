@@ -7,6 +7,16 @@ export interface User {
   email: string;
   role: string;
   phone?: string;
+  address?: string;
+  billingAddress?: {
+    name: string;
+    email: string;
+    city: string;
+    phone: string;
+    addressLine1: string;
+    addressLine2?: string;
+    companyName?: string;
+  };
 }
 
 // Define state type

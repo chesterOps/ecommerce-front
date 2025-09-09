@@ -15,6 +15,7 @@ function shouldShowBreadcrumb(pathname: string) {
   if (hide.includes(pathname)) return false;
 
   if (pathname.startsWith("/reset-password")) return false;
+  if (pathname.startsWith("/order-confirm")) return false;
   return true;
 }
 
@@ -79,7 +80,7 @@ export default function Breadcrumb() {
     items = [
       { label: "Home", path: "/" },
       { label: "Account", path: "/account" },
-      { label: "View Cart", path: "/cart" },
+      { label: "Cart", path: "/cart" },
       { label: "Checkout" },
     ];
   }
