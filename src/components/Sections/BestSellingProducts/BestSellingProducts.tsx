@@ -11,7 +11,7 @@ const BestSellingProducts = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/products/best-selling",
+        "https://apiexclusive.onrender.com/api/v1/products/best-selling",
         {
           method: "GET",
           headers: {
