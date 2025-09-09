@@ -16,6 +16,7 @@ interface Product {
   createdAt: Date;
   discount?: number;
   colors?: string[];
+  stock: number;
 }
 
 export default function Search() {
