@@ -12,18 +12,21 @@ import {
 } from "../../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { getUser } from "../../features/auth/userSlice";
+import { getUser, setUser } from "../../features/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
+  const user = useSelector(getUser);
+
+  const billingAddress = user?.billingAddress;
   const [form, setForm] = useState({
-    firstName: "",
-    companyName: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    phone: "",
-    email: "",
+    firstName: billingAddress?.name ?? "",
+    companyName: billingAddress?.companyName ?? "",
+    addressLine1: billingAddress?.addressLine1 ?? "",
+    addressLine2: billingAddress?.addressLine2 ?? "",
+    city: billingAddress?.city ?? "",
+    phone: billingAddress?.phone ?? "",
+    email: billingAddress?.email ?? "",
   });
 
   const [paymentType, setPaymentType] = useState("card");
@@ -41,8 +44,6 @@ const CheckOut = () => {
   const subTotal = useSelector(totalCartPrice);
 
   const cartDiscount = useSelector(getCartDiscount);
-
-  const user = useSelector(getUser);
 
   const coupon = useSelector(getCoupon);
 
@@ -149,6 +150,24 @@ const CheckOut = () => {
       if (resData.method === "card")
         return (window.location = resData.data.data.link);
       else {
+        if (saveAddress) {
+          // Add billing address
+          if (user)
+            dispatch(
+              setUser({
+                ...user,
+                billingAddress: {
+                  name: form.firstName,
+                  addressLine1: form.addressLine1,
+                  phone: form.phone,
+                  email: form.email,
+                  companyName: form.companyName,
+                  addressLine2: form.addressLine2,
+                  city: form.city,
+                },
+              })
+            );
+        }
         navigate(`/order-confirm/${resData.data._id}`);
       }
     } catch (err) {

@@ -11,7 +11,7 @@ const BestSellingProducts = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://apiexclusive.onrender.com/api/v1/products/best-selling",
+        "http://localhost:3000/api/v1/products/best-selling",
         {
           method: "GET",
           headers: {
@@ -29,6 +29,8 @@ const BestSellingProducts = () => {
       setLoading(false);
     }
   };
+
+  console.log(products);
 
   useEffect(() => {
     fetchProducts();
